@@ -45,14 +45,8 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-/* container */
-.container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
+.container { position: relative; width: 100%; height: 100%; }
 
-/* slides */
 .slide {
     position: absolute;
     width: 100%;
@@ -70,15 +64,13 @@ body::before {
 .left { transform: translateX(-100%); }
 .right { transform: translateX(100%); }
 
-/* texto */
 .title { font-size: 32px; }
 .desc { color: white; text-align: center; max-width: 500px; }
 
-/* media */
 video { width: 720px; border-radius: 18px; }
 img { width: 600px; border-radius: 18px; }
 
-/* FLECHAS FIX */
+/* ✔ FLECHAS FIX FINAL */
 .arrow {
     position: absolute;
     width: 80px;
@@ -93,7 +85,6 @@ img { width: 600px; border-radius: 18px; }
     transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-/* izquierda */
 .arrow.left {
     left: 15%;
     top: 50%;
@@ -109,31 +100,19 @@ img { width: 600px; border-radius: 18px; }
     transform: translateY(-50%) scale(0.95);
 }
 
-/* derecha FIX SIN BUG */
 .arrow.right {
     right: 15%;
     top: 50%;
-    transform: translateY(-50%);
-}
-
-.arrow.right::after {
-    content: "";
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background-image: url("UI_NavigationArrow_Outline.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: scaleX(-1);
+    transform: translateY(-50%) scaleX(-1);
 }
 
 .arrow.right:hover {
-    transform: translateY(-50%) scale(1.2);
+    transform: translateY(-50%) scaleX(-1) scale(1.2);
     filter: drop-shadow(0 0 10px white);
 }
 
 .arrow.right:active {
-    transform: translateY(-50%) scale(0.95);
+    transform: translateY(-50%) scaleX(-1) scale(0.95);
 }
 </style>
 </head>
@@ -186,13 +165,18 @@ function play(a){
     a.play().catch(()=>{});
 }
 
+/* 🔥 FIX MÚSICA REAL */
 function startMusic(){
     if(!started){
-        bgMusic.volume = 0.08; // 🔥 más bajo que HOME
+        bgMusic.volume = 0.07; // MÁS BAJO QUE HOME
         bgMusic.play().catch(()=>{});
         started = true;
     }
 }
+
+/* desbloqueo real */
+document.addEventListener("click", startMusic);
+document.addEventListener("mousemove", startMusic);
 
 function hover(){
     startMusic();
