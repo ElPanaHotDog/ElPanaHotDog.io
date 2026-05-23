@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+
+<title>Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(to bottom, #a056ff, #a098ff);
+    position: relative;
+    overflow: hidden;
+
+    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
+}
+
+/* patrón */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/S12_Pattern.png");
+    background-repeat: repeat;
+    background-size: 200px;
+
+    opacity: 0.15;
+}
+
+/* video */
+.video-container {
+    position: relative;
+    z-index: 2;
+}
+
+video {
+    width: 420px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* flechas */
+.arrow {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/UI_NavigationArrow_Outline.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
+    z-index: 3;
+}
+
+.arrow.left {
+    left: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow.right {
+    right: 20%;
+    top: 50%;
+    transform: translateY(-50%) scaleX(-1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="arrow left" onclick="alert('Cambia a sección anterior')"></div>
+
+<div class="video-container">
+    <video controls>
+        <source src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/SpaceCircuit.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="arrow right" onclick="alert('Cambia a siguiente sección')"></div>
+
+</body>
+</html>
