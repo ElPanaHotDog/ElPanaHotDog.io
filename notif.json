@@ -1,7 +1,7 @@
 {
-  "id": "4",
-  "title": "JOCHIDOG",
-  "message": "DBUBUIDSHSNHHSHYB8SBYBYWBYBYYBBYVBYWBYVWYBAV W YV A VH VAH VH ",
+  "id": "5",
+  "title": "Anti Pirateria",
+  "message": "Hemos detectado que tu Fall Guys está modificado para jugarlo gratuitamente, esto no sigue nuetro eula\nTu cuenta ha sido baneada",
   "enabled": true,
-  "popupType": "MT_OK"
+  "popupType": "MT_OK_CANCEL"
 }
