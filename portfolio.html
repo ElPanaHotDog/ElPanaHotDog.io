@@ -52,7 +52,7 @@ body::before {
     height: 100%;
 }
 
-/* slides */
+/* SLIDES */
 .slide {
     position: absolute;
     width: 100%;
@@ -70,7 +70,7 @@ body::before {
 .left { transform: translateX(-100%); }
 .right { transform: translateX(100%); }
 
-/* texto */
+/* TEXTOS */
 .title {
     font-size: 32px;
     margin-top: 10px;
@@ -85,7 +85,7 @@ body::before {
     margin-bottom: 10px;
 }
 
-/* media */
+/* MEDIA */
 video {
     width: 720px;
     border-radius: 18px;
@@ -98,7 +98,7 @@ img.render, img.skin {
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
-/* flechas */
+/* 🔥 FLECHAS (FIX COMPLETO) */
 .arrow {
     position: absolute;
     width: 80px;
@@ -113,21 +113,23 @@ img.render, img.skin {
     transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.arrow:hover {
-    transform: scale(1.2);
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
-}
-
-.arrow:active {
-    transform: scale(0.95);
-}
-
+/* izquierda */
 .arrow.left {
     left: 15%;
     top: 50%;
     transform: translateY(-50%);
 }
 
+.arrow.left:hover {
+    transform: translateY(-50%) scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
+}
+
+.arrow.left:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* derecha */
 .arrow.right {
     right: 15%;
     top: 50%;
@@ -136,6 +138,7 @@ img.render, img.skin {
 
 .arrow.right:hover {
     transform: translateY(-50%) scaleX(-1) scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
 }
 
 .arrow.right:active {
@@ -148,6 +151,7 @@ img.render, img.skin {
 
 <div class="container">
 
+    <!-- SLIDE 1 -->
     <div class="slide center" id="s0">
         <div style="text-align:center;">
             <div class="title">Space Circuit</div>
@@ -158,6 +162,7 @@ img.render, img.skin {
         </div>
     </div>
 
+    <!-- SLIDE 2 -->
     <div class="slide right" id="s1">
         <div style="text-align:center;">
             <div class="title">Render for a YouTuber's Thumbnail</div>
@@ -166,6 +171,7 @@ img.render, img.skin {
         </div>
     </div>
 
+    <!-- SLIDE 3 -->
     <div class="slide right" id="s2">
         <div style="text-align:center;">
             <div class="title">Jabirds Skin</div>
@@ -176,11 +182,13 @@ img.render, img.skin {
 
 </div>
 
+<!-- FLECHAS -->
 <div class="arrow left" onclick="move(-1)"></div>
 <div class="arrow right" onclick="move(1)"></div>
 
 <script>
 let index = 0;
+
 const slides = [
     document.getElementById("s0"),
     document.getElementById("s1"),
@@ -190,6 +198,7 @@ const slides = [
 function update() {
     slides.forEach((s, i) => {
         s.classList.remove("left","center","right");
+
         if (i === index) s.classList.add("center");
         else if (i < index) s.classList.add("left");
         else s.classList.add("right");
@@ -198,8 +207,10 @@ function update() {
 
 function move(dir) {
     index += dir;
+
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
+
     update();
 }
 
