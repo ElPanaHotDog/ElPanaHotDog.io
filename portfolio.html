@@ -45,8 +45,14 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-.container { position: relative; width: 100%; height: 100%; }
+/* container */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
+/* slides */
 .slide {
     position: absolute;
     width: 100%;
@@ -64,58 +70,104 @@ body::before {
 .left { transform: translateX(-100%); }
 .right { transform: translateX(100%); }
 
+/* texto */
 .title { font-size: 32px; }
 .desc { color: white; text-align: center; max-width: 500px; }
 
+/* media */
+video { width: 720px; border-radius: 18px; }
+img { width: 600px; border-radius: 18px; }
+
+/* FLECHAS FIX */
 .arrow {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+
+    background-image: url("UI_NavigationArrow_Outline.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    cursor: url("cursor.png"), auto;
+
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+/* izquierda */
+.arrow.left {
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow.left:hover {
+    transform: translateY(-50%) scale(1.2);
+    filter: drop-shadow(0 0 10px white);
+}
+
+.arrow.left:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* derecha FIX SIN BUG */
+.arrow.right {
+    right: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow.right::after {
+    content: "";
     position: absolute;
     width: 80px;
     height: 80px;
     background-image: url("UI_NavigationArrow_Outline.png");
     background-size: contain;
     background-repeat: no-repeat;
-
-    transition: transform 0.15s ease, filter 0.15s ease;
+    transform: scaleX(-1);
 }
 
-.arrow.left { left: 15%; top: 50%; transform: translateY(-50%); }
-.arrow.right { right: 15%; top: 50%; transform: translateY(-50%) scaleX(-1); }
+.arrow.right:hover {
+    transform: translateY(-50%) scale(1.2);
+    filter: drop-shadow(0 0 10px white);
+}
 
-.arrow:hover { transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 10px white); }
-.arrow:active { transform: translateY(-50%) scale(0.95); }
+.arrow.right:active {
+    transform: translateY(-50%) scale(0.95);
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
     <div class="slide center" id="s0">
         <div class="title">Space Circuit</div>
         <div class="desc">A map with space theme that took 3 weeks to complete</div>
-        <video width="720" controls src="SpaceCircuit.mp4"></video>
+        <video controls src="SpaceCircuit.mp4"></video>
     </div>
 
     <div class="slide right" id="s1">
         <div class="title">Render</div>
         <div class="desc">Blender render for thumbnail</div>
-        <img width="600" src="Render.png">
+        <img src="Render.png">
     </div>
 
     <div class="slide right" id="s2">
         <div class="title">Jabirds Skin</div>
         <div class="desc">Skin for Hispanic YouTuber</div>
-        <img width="600" src="JabirdsSkin.jpg">
+        <img src="JabirdsSkin.jpg">
     </div>
+
 </div>
 
 <div class="arrow left" onmouseenter="hover()" onclick="move(-1)"></div>
 <div class="arrow right" onmouseenter="hover()" onclick="move(1)"></div>
 
-<!-- SFX -->
+<!-- AUDIO -->
 <audio id="hoverSound" src="PopUp.wav"></audio>
 <audio id="clickSound" src="Accept.wav"></audio>
-
-<!-- MUSIC -->
 <audio id="bgMusic" src="FallinFriends.mp3" loop></audio>
 
 <script>
@@ -129,17 +181,17 @@ const bgMusic = document.getElementById("bgMusic");
 
 let started = false;
 
-function startMusic(){
-    if(!started){
-        bgMusic.volume = 0.2;
-        bgMusic.play().catch(()=>{});
-        started = true;
-    }
-}
-
 function play(a){
     a.currentTime = 0;
     a.play().catch(()=>{});
+}
+
+function startMusic(){
+    if(!started){
+        bgMusic.volume = 0.08; // 🔥 más bajo que HOME
+        bgMusic.play().catch(()=>{});
+        started = true;
+    }
 }
 
 function hover(){
