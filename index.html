@@ -27,7 +27,7 @@ body {
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
 
-/* patrón */
+/* 🔥 patrón animado */
 body::before {
     content: "";
     position: absolute;
@@ -39,6 +39,13 @@ body::before {
 
     opacity: 0.15;
     pointer-events: none;
+
+    animation: movePattern 20s linear infinite;
+}
+
+@keyframes movePattern {
+    from { background-position: 0 0; }
+    to { background-position: 400px 400px; }
 }
 
 .container {
@@ -53,7 +60,7 @@ h1 {
     text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
 }
 
-/* HOT DOG BIG (más grande) */
+/* big */
 .tdog-wrap {
     position: relative;
     display: inline-block;
@@ -61,13 +68,9 @@ h1 {
 
 .tdog-wrap img {
     position: absolute;
-
     top: -150px;
     left: 65%;
-
     width: 320px;
-    height: auto;
-
     transform: translateX(-50%);
     z-index: 0;
     pointer-events: none;
@@ -78,15 +81,13 @@ h1 {
     z-index: 1;
 }
 
-/* BOTONES */
+/* botones */
 .buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
-    position: relative;
 }
 
-/* cursor también en botones */
 button {
     padding: 12px 20px;
     border: none;
@@ -97,7 +98,6 @@ button {
     font-size: 18px;
 
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
-
     transition: 0.2s;
 }
 
@@ -105,11 +105,10 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* colores */
 .github { background: #24292e; color: white; }
 .youtube { background: #ff0000; color: white; }
 .x { background: #000000; color: white; }
-.portfolio { background: #ffd400; color: black; font-weight: 900; }
+.portfolio { background: #ffd400; color: black; }
 </style>
 </head>
 
@@ -127,13 +126,8 @@ button:hover {
 
     <div class="buttons">
         <button class="github" onclick="window.open('https://github.com/ElPanaHotDog','_blank')">GitHub</button>
-
         <button class="youtube" onclick="window.open('https://youtube.com','_blank')">YouTube</button>
-
-        <button class="portfolio" onclick="window.location.href='portfolio.html'">
-            Portfolio
-        </button>
-
+        <button class="portfolio" onclick="window.location.href='portfolio.html'">Portfolio</button>
         <button class="x" onclick="window.open('https://x.com','_blank')">X</button>
     </div>
 
