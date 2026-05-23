@@ -27,7 +27,7 @@ body {
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
 
-/* patrón animado */
+/* patrón */
 body::before {
     content: "";
     position: absolute;
@@ -48,7 +48,6 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-/* UI */
 .container {
     position: relative;
     z-index: 2;
@@ -57,11 +56,9 @@ body::before {
 
 h1 {
     font-size: 60px;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
 }
 
-/* BIG DETRÁS */
+/* BIG detrás */
 .tdog-wrap {
     position: relative;
     display: inline-block;
@@ -77,11 +74,10 @@ h1 {
     pointer-events: none;
 }
 
-/* BOTONES */
+/* botones */
 .buttons {
     display: flex;
     gap: 15px;
-    justify-content: center;
 }
 
 button {
@@ -94,7 +90,6 @@ button {
     font-size: 18px;
 
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
-
     transition: 0.2s;
 }
 
@@ -104,8 +99,8 @@ button:hover {
 
 .github { background: #24292e; color: white; }
 .youtube { background: #ff0000; color: white; }
-.x { background: #000000; color: white; }
 .portfolio { background: #ffd400; color: black; }
+.x { background: #000; color: white; }
 </style>
 </head>
 
@@ -113,48 +108,67 @@ button:hover {
 
 <div class="container">
 
-    <h1>
-        I'm El Pana 
-        <span class="tdog-wrap">
-            <img src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/big.png">
-            <span class="tdog">Hot Dog</span>
-        </span>
-    </h1>
+<h1>
+    I'm El Pana 
+    <span class="tdog-wrap">
+        <img src="big.png">
+        Hot Dog
+    </span>
+</h1>
 
-    <div class="buttons">
-        <button class="github" onmouseenter="hover()" onclick="clickNormal('https://github.com/ElPanaHotDog')">GitHub</button>
-        <button class="youtube" onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
-        <button class="portfolio" onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
-        <button class="x" onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
-    </div>
+<div class="buttons">
+    <button onmouseenter="hover()" onclick="clickNormal('https://github.com')">GitHub</button>
+    <button onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
+    <button onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
+    <button onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
+</div>
 
 </div>
 
-<!-- AUDIO -->
-<audio id="hoverSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#65 (UI_Gen_PopUp).wav"></audio>
-<audio id="clickSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#3 (UI_MainMenu_Custo_Accept).wav"></audio>
-<audio id="portfolioSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#55 (SFX_SymphonyRewards_Confeti).wav"></audio>
+<!-- 🔊 SFX -->
+<audio id="hoverSound" src="PopUp.wav"></audio>
+<audio id="clickSound" src="Accept.wav"></audio>
+<audio id="portfolioSound" src="Confeti.wav"></audio>
+
+<!-- 🎵 MUSICA -->
+<audio id="bgMusic" src="FallinFriends.mp3" loop></audio>
 
 <script>
 const hoverSound = document.getElementById("hoverSound");
 const clickSound = document.getElementById("clickSound");
 const portfolioSound = document.getElementById("portfolioSound");
+const bgMusic = document.getElementById("bgMusic");
+
+let musicStarted = false;
+
+function startMusic() {
+    if (!musicStarted) {
+        bgMusic.volume = 0.25; // 🔥 bajo volumen
+        bgMusic.play().catch(()=>{});
+        musicStarted = true;
+    }
+}
+
+function play(audio) {
+    audio.currentTime = 0;
+    audio.play().catch(()=>{});
+}
 
 function hover() {
-    hoverSound.currentTime = 0;
-    hoverSound.play();
+    startMusic();
+    play(hoverSound);
 }
 
 function clickNormal(url) {
-    clickSound.currentTime = 0;
-    clickSound.play();
-    setTimeout(() => window.open(url, "_blank"), 150);
+    startMusic();
+    play(clickSound);
+    setTimeout(()=>window.open(url,"_blank"),150);
 }
 
 function clickPortfolio() {
-    portfolioSound.currentTime = 0;
-    portfolioSound.play();
-    setTimeout(() => window.location.href = "portfolio.html", 200);
+    startMusic();
+    play(portfolioSound);
+    setTimeout(()=>window.location.href="portfolio.html",200);
 }
 </script>
 
