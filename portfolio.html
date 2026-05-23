@@ -24,7 +24,7 @@ body {
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
 
-/* 🔥 patrón animado */
+/* patrón animado */
 body::before {
     content: "";
     position: absolute;
@@ -52,7 +52,7 @@ body::before {
     height: 100%;
 }
 
-/* SLIDES */
+/* slides */
 .slide {
     position: absolute;
     width: 100%;
@@ -70,7 +70,7 @@ body::before {
 .left { transform: translateX(-100%); }
 .right { transform: translateX(100%); }
 
-/* TEXTOS */
+/* textos */
 .title {
     font-size: 32px;
     margin-top: 10px;
@@ -85,20 +85,11 @@ body::before {
     margin-bottom: 10px;
 }
 
-/* MEDIA */
-video {
-    width: 720px;
-    border-radius: 18px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-}
+/* media */
+video { width: 720px; border-radius: 18px; }
+img { width: 600px; border-radius: 18px; }
 
-img.render, img.skin {
-    width: 600px;
-    border-radius: 18px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-}
-
-/* 🔥 FLECHAS (FIX COMPLETO) */
+/* flechas */
 .arrow {
     position: absolute;
     width: 80px;
@@ -113,7 +104,6 @@ img.render, img.skin {
     transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-/* izquierda */
 .arrow.left {
     left: 15%;
     top: 50%;
@@ -129,7 +119,6 @@ img.render, img.skin {
     transform: translateY(-50%) scale(0.95);
 }
 
-/* derecha */
 .arrow.right {
     right: 15%;
     top: 50%;
@@ -138,7 +127,6 @@ img.render, img.skin {
 
 .arrow.right:hover {
     transform: translateY(-50%) scaleX(-1) scale(1.2);
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
 }
 
 .arrow.right:active {
@@ -151,7 +139,6 @@ img.render, img.skin {
 
 <div class="container">
 
-    <!-- SLIDE 1 -->
     <div class="slide center" id="s0">
         <div style="text-align:center;">
             <div class="title">Space Circuit</div>
@@ -162,29 +149,30 @@ img.render, img.skin {
         </div>
     </div>
 
-    <!-- SLIDE 2 -->
     <div class="slide right" id="s1">
         <div style="text-align:center;">
             <div class="title">Render for a YouTuber's Thumbnail</div>
             <div class="desc">This is a space themed render made in Blender, created for a YouTuber's thumbnail</div>
-            <img class="render" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/Render.png">
+            <img src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/Render.png">
         </div>
     </div>
 
-    <!-- SLIDE 3 -->
     <div class="slide right" id="s2">
         <div style="text-align:center;">
             <div class="title">Jabirds Skin</div>
-            <div class="desc">This is a skin I made for a Hispanic Fall Guys YouTuber (the skin can be used in BettrFG)</div>
-            <img class="skin" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/JabirdsSkin.jpg">
+            <div class="desc">This is a skin I made for a Hispanic YouTuber (usable in BettrFG)</div>
+            <img src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/JabirdsSkin.jpg">
         </div>
     </div>
 
 </div>
 
-<!-- FLECHAS -->
-<div class="arrow left" onclick="move(-1)"></div>
-<div class="arrow right" onclick="move(1)"></div>
+<div class="arrow left" onmouseenter="hover()" onclick="move(-1)"></div>
+<div class="arrow right" onmouseenter="hover()" onclick="move(1)"></div>
+
+<!-- AUDIO -->
+<audio id="hoverSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#65 (UI_Gen_PopUp).wav"></audio>
+<audio id="clickSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#3 (UI_MainMenu_Custo_Accept).wav"></audio>
 
 <script>
 let index = 0;
@@ -195,10 +183,17 @@ const slides = [
     document.getElementById("s2")
 ];
 
+const hoverSound = document.getElementById("hoverSound");
+const clickSound = document.getElementById("clickSound");
+
+function hover() {
+    hoverSound.currentTime = 0;
+    hoverSound.play();
+}
+
 function update() {
     slides.forEach((s, i) => {
         s.classList.remove("left","center","right");
-
         if (i === index) s.classList.add("center");
         else if (i < index) s.classList.add("left");
         else s.classList.add("right");
@@ -206,6 +201,9 @@ function update() {
 }
 
 function move(dir) {
+    clickSound.currentTime = 0;
+    clickSound.play();
+
     index += dir;
 
     if (index < 0) index = slides.length - 1;
