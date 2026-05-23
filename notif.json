@@ -1,7 +1,7 @@
 {
-  "id": "5",
+  "id": "1",
   "title": "Servidor",
-  "message": "Esperando jugadores...",
+  "message": "Hola Pana Hot Dog",
   "enabled": true,
-  "popupType": "MT_WAIT_FOR_EVENT"
+  "popupType": "MT_OK"
 }
