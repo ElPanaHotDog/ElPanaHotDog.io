@@ -54,11 +54,9 @@ body::before {
     text-align: center;
 }
 
-h1 {
-    font-size: 60px;
-}
+h1 { font-size: 60px; }
 
-/* BIG detrás */
+/* BIG */
 .tdog-wrap {
     position: relative;
     display: inline-block;
@@ -93,11 +91,8 @@ button {
     transition: 0.2s;
 }
 
-button:hover {
-    transform: scale(1.1);
-}
+button:hover { transform: scale(1.1); }
 
-/* ✔ COLORES CORRECTOS */
 .github { background: #2b2f36; color: white; }
 .youtube { background: #ff0000; color: white; }
 .portfolio { background: #ffd400; color: black; }
@@ -118,10 +113,10 @@ button:hover {
 </h1>
 
 <div class="buttons">
-    <button class="github" onmouseenter="hover()" onclick="clickNormal('https://github.com')">GitHub</button>
-    <button class="youtube" onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
-    <button class="portfolio" onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
-    <button class="x" onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
+    <button onmouseenter="hover()" onclick="clickNormal('https://github.com')">GitHub</button>
+    <button onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
+    <button onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
+    <button onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
 </div>
 
 </div>
@@ -145,6 +140,7 @@ function play(a){
     a.play().catch(()=>{});
 }
 
+/* 🔥 FIX CLAVE: desbloqueo real de música */
 function startMusic(){
     if(!musicStarted){
         bgMusic.volume = 0.15;
@@ -152,6 +148,11 @@ function startMusic(){
         musicStarted = true;
     }
 }
+
+/* 🔥 cualquier interacción activa música */
+document.addEventListener("click", startMusic);
+document.addEventListener("mousemove", startMusic);
+document.addEventListener("keydown", startMusic);
 
 function hover(){
     startMusic();
@@ -164,10 +165,14 @@ function clickNormal(url){
     setTimeout(()=>window.open(url,"_blank"),150);
 }
 
+/* ⏳ FIX DELAY PORTFOLIO */
 function clickPortfolio(){
     startMusic();
     play(portfolioSound);
-    setTimeout(()=>window.location.href="portfolio.html",200);
+
+    setTimeout(()=>{
+        window.location.href = "portfolio.html";
+    }, 900);
 }
 </script>
 
