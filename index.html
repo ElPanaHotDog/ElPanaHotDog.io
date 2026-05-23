@@ -10,102 +10,84 @@
 
 <style>
 body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 
-    font-family: 'Titan One', sans-serif;
-    color: white;
+    font-family:'Titan One', sans-serif;
+    color:white;
 
-    background: linear-gradient(to bottom, #a056ff, #a098ff);
-    overflow: hidden;
-    position: relative;
-
-    cursor: url("cursor.png"), auto;
+    background: linear-gradient(to bottom,#a056ff,#a098ff);
+    overflow:hidden;
+    cursor:url("cursor.png"), auto;
 }
 
-/* patrón */
-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background-image: url("S12_Pattern.png");
-    background-repeat: repeat;
-    background-size: 200px;
-
-    opacity: 0.15;
-    pointer-events: none;
-
-    animation: movePattern 20s linear infinite;
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:url("S12_Pattern.png");
+    background-repeat:repeat;
+    background-size:200px;
+    opacity:0.15;
+    animation:move 20s linear infinite;
+    pointer-events:none;
 }
 
-@keyframes movePattern {
-    from { background-position: 0 0; }
-    to { background-position: 400px 400px; }
+@keyframes move{
+    from{background-position:0 0;}
+    to{background-position:400px 400px;}
 }
 
-.container {
-    position: relative;
-    z-index: 2;
-    text-align: center;
+h1{font-size:60px;}
+
+.tdog-wrap{
+    position:relative;
+    display:inline-block;
 }
 
-h1 { font-size: 60px; }
-
-/* BIG */
-.tdog-wrap {
-    position: relative;
-    display: inline-block;
+.tdog-wrap img{
+    position:absolute;
+    top:-150px;
+    left:65%;
+    width:320px;
+    transform:translateX(-50%);
+    z-index:-1;
 }
 
-.tdog-wrap img {
-    position: absolute;
-    top: -150px;
-    left: 65%;
-    width: 320px;
-    transform: translateX(-50%);
-    z-index: -1;
-    pointer-events: none;
+.buttons{
+    display:flex;
+    gap:15px;
 }
 
-/* BOTONES */
-.buttons {
-    display: flex;
-    gap: 15px;
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:12px;
+    font-family:'Asap', sans-serif;
+    font-weight:700;
+    font-size:18px;
+    cursor:url("cursor.png"), auto;
+    transition:.2s;
 }
 
-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 12px;
+button:hover{transform:scale(1.1);}
 
-    font-family: 'Asap', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-
-    cursor: url("cursor.png"), auto;
-    transition: 0.2s;
-}
-
-button:hover { transform: scale(1.1); }
-
-.github { background: #2b2f36; color: white; }
-.youtube { background: #ff0000; color: white; }
-.portfolio { background: #ffd400; color: black; }
-.x { background: #000000; color: white; }
+/* ✔ COLORES CORRECTOS */
+.github{background:#2b2f36;color:white;}
+.youtube{background:#ff0000;color:white;}
+.portfolio{background:#ffd400;color:black;}
+.x{background:#000000;color:white;}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
 <h1>
-    I'm El Pana 
+    I'm El Pana
     <span class="tdog-wrap">
         <img src="big.png">
         Hot Dog
@@ -113,67 +95,56 @@ button:hover { transform: scale(1.1); }
 </h1>
 
 <div class="buttons">
-    <button onmouseenter="hover()" onclick="clickNormal('https://github.com')">GitHub</button>
-    <button onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
-    <button onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
-    <button onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
+    <button onmouseenter="hover()" onclick="openGH()">GitHub</button>
+    <button onmouseenter="hover()" onclick="openYT()">YouTube</button>
+    <button onmouseenter="hover()" onclick="openPF()">Portfolio</button>
+    <button onmouseenter="hover()" onclick="openX()">X</button>
 </div>
 
-</div>
-
-<!-- AUDIO -->
-<audio id="hoverSound" src="PopUp.wav"></audio>
-<audio id="clickSound" src="Accept.wav"></audio>
-<audio id="portfolioSound" src="Confeti.wav"></audio>
-<audio id="bgMusic" src="FallinFriends.mp3" loop></audio>
+<audio id="bg" src="FallinFriends.mp3" loop></audio>
+<audio id="hover" src="PopUp.wav"></audio>
+<audio id="click" src="Accept.wav"></audio>
+<audio id="conf" src="Confeti.wav"></audio>
 
 <script>
-const hoverSound = document.getElementById("hoverSound");
-const clickSound = document.getElementById("clickSound");
-const portfolioSound = document.getElementById("portfolioSound");
-const bgMusic = document.getElementById("bgMusic");
+const bg=document.getElementById("bg");
+const hoverS=document.getElementById("hover");
+const clickS=document.getElementById("click");
+const confS=document.getElementById("conf");
 
-let musicStarted = false;
+let started=false;
 
-function play(a){
-    a.currentTime = 0;
-    a.play().catch(()=>{});
-}
-
-/* 🔥 FIX CLAVE: desbloqueo real de música */
 function startMusic(){
-    if(!musicStarted){
-        bgMusic.volume = 0.15;
-        bgMusic.play().catch(()=>{});
-        musicStarted = true;
+    if(!started){
+        bg.volume=0.15;
+        bg.play().catch(()=>{});
+        started=true;
     }
 }
 
-/* 🔥 cualquier interacción activa música */
-document.addEventListener("click", startMusic);
-document.addEventListener("mousemove", startMusic);
-document.addEventListener("keydown", startMusic);
+document.addEventListener("click",startMusic);
+document.addEventListener("mousemove",startMusic);
+
+function play(a){
+    a.currentTime=0;
+    a.play().catch(()=>{});
+}
 
 function hover(){
     startMusic();
-    play(hoverSound);
+    play(hoverS);
 }
 
-function clickNormal(url){
+function openGH(){startMusic();play(clickS);window.open("https://github.com");}
+function openYT(){startMusic();play(clickS);window.open("https://youtube.com");}
+
+function openPF(){
     startMusic();
-    play(clickSound);
-    setTimeout(()=>window.open(url,"_blank"),150);
+    play(confS);
+    setTimeout(()=>location.href="portfolio.html",700);
 }
 
-/* ⏳ FIX DELAY PORTFOLIO */
-function clickPortfolio(){
-    startMusic();
-    play(portfolioSound);
-
-    setTimeout(()=>{
-        window.location.href = "portfolio.html";
-    }, 900);
-}
+function openX(){startMusic();play(clickS);window.open("https://x.com");}
 </script>
 
 </body>
