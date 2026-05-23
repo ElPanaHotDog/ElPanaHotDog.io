@@ -10,77 +10,105 @@
 
 <style>
 body {
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-    font-family:'Titan One', sans-serif;
-    color:white;
+    font-family: 'Titan One', sans-serif;
+    color: white;
 
-    background: linear-gradient(to bottom,#a056ff,#a098ff);
-    overflow:hidden;
-    cursor:url("cursor.png"), auto;
+    background: linear-gradient(to bottom, #a056ff, #a098ff);
+    overflow: hidden;
+
+    cursor: url("cursor.png"), auto;
 }
 
-body::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background-image:url("S12_Pattern.png");
-    background-repeat:repeat;
-    background-size:200px;
-    opacity:0.15;
-    animation:move 20s linear infinite;
-    pointer-events:none;
+/* patrón */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("S12_Pattern.png");
+    background-repeat: repeat;
+    background-size: 200px;
+
+    opacity: 0.15;
+    pointer-events: none;
+
+    animation: move 20s linear infinite;
 }
 
-@keyframes move{
-    from{background-position:0 0;}
-    to{background-position:400px 400px;}
+@keyframes move {
+    from { background-position: 0 0; }
+    to { background-position: 400px 400px; }
 }
 
-h1{font-size:60px;}
-
-.tdog-wrap{
-    position:relative;
-    display:inline-block;
+h1 {
+    font-size: 60px;
 }
 
-.tdog-wrap img{
-    position:absolute;
-    top:-150px;
-    left:65%;
-    width:320px;
-    transform:translateX(-50%);
-    z-index:-1;
+/* BIG */
+.tdog-wrap {
+    position: relative;
+    display: inline-block;
 }
 
-.buttons{
-    display:flex;
-    gap:15px;
+.tdog-wrap img {
+    position: absolute;
+    top: -150px;
+    left: 65%;
+    width: 320px;
+    transform: translateX(-50%);
+    z-index: -1;
 }
 
-button{
-    padding:12px 20px;
-    border:none;
-    border-radius:12px;
-    font-family:'Asap', sans-serif;
-    font-weight:700;
-    font-size:18px;
-    cursor:url("cursor.png"), auto;
-    transition:.2s;
+/* BOTONES */
+.buttons {
+    display: flex;
+    gap: 15px;
 }
 
-button:hover{transform:scale(1.1);}
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
 
-/* ✔ COLORES CORRECTOS */
-.github{background:#2b2f36;color:white;}
-.youtube{background:#ff0000;color:white;}
-.portfolio{background:#ffd400;color:black;}
-.x{background:#000000;color:white;}
+    font-family: 'Asap', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+
+    cursor: url("cursor.png"), auto;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* ✔ COLORES RESTAURADOS BIEN */
+.github {
+    background: #2b2f36;
+    color: white;
+}
+
+.youtube {
+    background: #ff0000;
+    color: white;
+}
+
+.portfolio {
+    background: #ffd400;
+    color: black;
+}
+
+.x {
+    background: #000000;
+    color: white;
+}
 </style>
 </head>
 
@@ -95,56 +123,64 @@ button:hover{transform:scale(1.1);}
 </h1>
 
 <div class="buttons">
-    <button onmouseenter="hover()" onclick="openGH()">GitHub</button>
-    <button onmouseenter="hover()" onclick="openYT()">YouTube</button>
-    <button onmouseenter="hover()" onclick="openPF()">Portfolio</button>
-    <button onmouseenter="hover()" onclick="openX()">X</button>
+    <button class="github" onmouseenter="hover()" onclick="go('https://github.com')">GitHub</button>
+    <button class="youtube" onmouseenter="hover()" onclick="go('https://youtube.com')">YouTube</button>
+    <button class="portfolio" onmouseenter="hover()" onclick="openPortfolio()">Portfolio</button>
+    <button class="x" onmouseenter="hover()" onclick="go('https://x.com')">X</button>
 </div>
 
+<!-- AUDIO -->
 <audio id="bg" src="FallinFriends.mp3" loop></audio>
 <audio id="hover" src="PopUp.wav"></audio>
 <audio id="click" src="Accept.wav"></audio>
-<audio id="conf" src="Confeti.wav"></audio>
+<audio id="confetti" src="Confeti.wav"></audio>
 
 <script>
-const bg=document.getElementById("bg");
-const hoverS=document.getElementById("hover");
-const clickS=document.getElementById("click");
-const confS=document.getElementById("conf");
+const bg = document.getElementById("bg");
+const hoverS = document.getElementById("hover");
+const clickS = document.getElementById("click");
+const confS = document.getElementById("confetti");
 
-let started=false;
+let started = false;
 
+function play(a){
+    a.currentTime = 0;
+    a.play().catch(()=>{});
+}
+
+/* 🔥 música GARANTIZADA */
 function startMusic(){
     if(!started){
-        bg.volume=0.15;
+        bg.volume = 0.15;
         bg.play().catch(()=>{});
-        started=true;
+        started = true;
     }
 }
 
-document.addEventListener("click",startMusic);
-document.addEventListener("mousemove",startMusic);
-
-function play(a){
-    a.currentTime=0;
-    a.play().catch(()=>{});
-}
+/* desbloqueo real (esto arregla el bug de "no suena") */
+document.addEventListener("click", startMusic);
+document.addEventListener("mousemove", startMusic);
+document.addEventListener("keydown", startMusic);
 
 function hover(){
     startMusic();
     play(hoverS);
 }
 
-function openGH(){startMusic();play(clickS);window.open("https://github.com");}
-function openYT(){startMusic();play(clickS);window.open("https://youtube.com");}
-
-function openPF(){
+function go(url){
     startMusic();
-    play(confS);
-    setTimeout(()=>location.href="portfolio.html",700);
+    play(clickS);
+    setTimeout(()=>window.open(url,"_blank"),150);
 }
 
-function openX(){startMusic();play(clickS);window.open("https://x.com");}
+function openPortfolio(){
+    startMusic();
+    play(confS);
+
+    setTimeout(()=>{
+        window.location.href = "portfolio.html";
+    }, 700);
+}
 </script>
 
 </body>
