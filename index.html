@@ -27,7 +27,7 @@ body {
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
 
-/* patrón */
+/* patrón animado */
 body::before {
     content: "";
     position: absolute;
@@ -48,7 +48,7 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-/* capa UI */
+/* UI */
 .container {
     position: relative;
     z-index: 2;
@@ -77,10 +77,6 @@ h1 {
     pointer-events: none;
 }
 
-.tdog {
-    position: relative;
-}
-
 /* BOTONES */
 .buttons {
     display: flex;
@@ -88,7 +84,6 @@ h1 {
     justify-content: center;
 }
 
-/* sonido hover */
 button {
     padding: 12px 20px;
     border: none;
@@ -127,15 +122,15 @@ button:hover {
     </h1>
 
     <div class="buttons">
-        <button class="github" onclick="clickNormal('https://github.com/ElPanaHotDog')">GitHub</button>
-        <button class="youtube" onclick="clickNormal('https://youtube.com')">YouTube</button>
-        <button class="portfolio" onclick="clickPortfolio()">Portfolio</button>
-        <button class="x" onclick="clickNormal('https://x.com')">X</button>
+        <button class="github" onmouseenter="hover()" onclick="clickNormal('https://github.com/ElPanaHotDog')">GitHub</button>
+        <button class="youtube" onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
+        <button class="portfolio" onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
+        <button class="x" onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
     </div>
 
 </div>
 
-<!-- 🔊 AUDIO -->
+<!-- AUDIO -->
 <audio id="hoverSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#65 (UI_Gen_PopUp).wav"></audio>
 <audio id="clickSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#3 (UI_MainMenu_Custo_Accept).wav"></audio>
 <audio id="portfolioSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#55 (SFX_SymphonyRewards_Confeti).wav"></audio>
@@ -145,30 +140,21 @@ const hoverSound = document.getElementById("hoverSound");
 const clickSound = document.getElementById("clickSound");
 const portfolioSound = document.getElementById("portfolioSound");
 
-/* hover sound */
-document.querySelectorAll("button").forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-        hoverSound.currentTime = 0;
-        hoverSound.play();
-    });
-});
+function hover() {
+    hoverSound.currentTime = 0;
+    hoverSound.play();
+}
 
 function clickNormal(url) {
     clickSound.currentTime = 0;
     clickSound.play();
-
-    setTimeout(() => {
-        window.open(url, "_blank");
-    }, 150);
+    setTimeout(() => window.open(url, "_blank"), 150);
 }
 
 function clickPortfolio() {
     portfolioSound.currentTime = 0;
     portfolioSound.play();
-
-    setTimeout(() => {
-        window.location.href = "portfolio.html";
-    }, 200);
+    setTimeout(() => window.location.href = "portfolio.html", 200);
 }
 </script>
 
