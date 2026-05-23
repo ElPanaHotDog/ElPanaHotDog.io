@@ -1,7 +1,7 @@
 {
-  "id": "2",
-  "title": "Aviso",
-  "message": "Evento iniciado",
+  "id": "5",
+  "title": "Servidor",
+  "message": "Esperando jugadores...",
   "enabled": true,
-  "popupType": "MT_OK"
+  "popupType": "MT_WAIT_FOR_EVENT"
 }
