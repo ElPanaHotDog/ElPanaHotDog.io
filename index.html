@@ -24,9 +24,10 @@ body {
     overflow: hidden;
 
     cursor: url("cursor.png"), auto;
+    position: relative;
 }
 
-/* patrón */
+/* 🔥 patrón (FONDO) */
 body::before {
     content: "";
     position: absolute;
@@ -37,9 +38,11 @@ body::before {
     background-size: 200px;
 
     opacity: 0.15;
-    pointer-events: none;
 
     animation: move 20s linear infinite;
+
+    z-index: 0; /* IMPORTANTE */
+    pointer-events: none;
 }
 
 @keyframes move {
@@ -47,11 +50,18 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
+/* CONTENIDO ENCIMA DEL PATRÓN */
+.container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
 h1 {
     font-size: 60px;
 }
 
-/* BIG */
+/* 🔥 BIG BIEN POSICIONADO (ENCIMA DEL PATRÓN) */
 .tdog-wrap {
     position: relative;
     display: inline-block;
@@ -63,7 +73,9 @@ h1 {
     left: 65%;
     width: 320px;
     transform: translateX(-50%);
-    z-index: -1;
+
+    z-index: 5; /* 🔥 ESTO LO SACA DEL PATRÓN */
+    pointer-events: none;
 }
 
 /* BOTONES */
@@ -72,6 +84,7 @@ h1 {
     gap: 15px;
 }
 
+/* IMPORTANTE: botones base */
 button {
     padding: 12px 20px;
     border: none;
@@ -83,13 +96,14 @@ button {
 
     cursor: url("cursor.png"), auto;
     transition: 0.2s;
+    z-index: 3;
 }
 
 button:hover {
     transform: scale(1.1);
 }
 
-/* ✔ COLORES RESTAURADOS BIEN */
+/* 🎨 COLORES (AHORA SÍ FUNCIONAN) */
 .github {
     background: #2b2f36;
     color: white;
@@ -114,6 +128,8 @@ button:hover {
 
 <body>
 
+<div class="container">
+
 <h1>
     I'm El Pana
     <span class="tdog-wrap">
@@ -123,10 +139,13 @@ button:hover {
 </h1>
 
 <div class="buttons">
+    <!-- 🔥 IMPORTANTE: clases SÍ asignadas -->
     <button class="github" onmouseenter="hover()" onclick="go('https://github.com')">GitHub</button>
     <button class="youtube" onmouseenter="hover()" onclick="go('https://youtube.com')">YouTube</button>
     <button class="portfolio" onmouseenter="hover()" onclick="openPortfolio()">Portfolio</button>
     <button class="x" onmouseenter="hover()" onclick="go('https://x.com')">X</button>
+</div>
+
 </div>
 
 <!-- AUDIO -->
@@ -148,7 +167,7 @@ function play(a){
     a.play().catch(()=>{});
 }
 
-/* 🔥 música GARANTIZADA */
+/* 🔥 FIX REAL: música siempre arranca */
 function startMusic(){
     if(!started){
         bg.volume = 0.15;
@@ -157,7 +176,7 @@ function startMusic(){
     }
 }
 
-/* desbloqueo real (esto arregla el bug de "no suena") */
+/* desbloqueo real */
 document.addEventListener("click", startMusic);
 document.addEventListener("mousemove", startMusic);
 document.addEventListener("keydown", startMusic);
@@ -176,10 +195,7 @@ function go(url){
 function openPortfolio(){
     startMusic();
     play(confS);
-
-    setTimeout(()=>{
-        window.location.href = "portfolio.html";
-    }, 700);
+    setTimeout(()=>location.href="portfolio.html",700);
 }
 </script>
 
