@@ -24,7 +24,7 @@ body {
     overflow: hidden;
     position: relative;
 
-    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
+    cursor: url("cursor.png"), auto;
 }
 
 /* patrón */
@@ -33,7 +33,7 @@ body::before {
     position: absolute;
     inset: 0;
 
-    background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/S12_Pattern.png");
+    background-image: url("S12_Pattern.png");
     background-repeat: repeat;
     background-size: 200px;
 
@@ -74,7 +74,7 @@ h1 {
     pointer-events: none;
 }
 
-/* botones */
+/* BOTONES */
 .buttons {
     display: flex;
     gap: 15px;
@@ -89,7 +89,7 @@ button {
     font-weight: 700;
     font-size: 18px;
 
-    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
+    cursor: url("cursor.png"), auto;
     transition: 0.2s;
 }
 
@@ -97,10 +97,11 @@ button:hover {
     transform: scale(1.1);
 }
 
-.github { background: #24292e; color: white; }
+/* ✔ COLORES CORRECTOS */
+.github { background: #2b2f36; color: white; }
 .youtube { background: #ff0000; color: white; }
 .portfolio { background: #ffd400; color: black; }
-.x { background: #000; color: white; }
+.x { background: #000000; color: white; }
 </style>
 </head>
 
@@ -117,20 +118,18 @@ button:hover {
 </h1>
 
 <div class="buttons">
-    <button onmouseenter="hover()" onclick="clickNormal('https://github.com')">GitHub</button>
-    <button onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
-    <button onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
-    <button onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
+    <button class="github" onmouseenter="hover()" onclick="clickNormal('https://github.com')">GitHub</button>
+    <button class="youtube" onmouseenter="hover()" onclick="clickNormal('https://youtube.com')">YouTube</button>
+    <button class="portfolio" onmouseenter="hover()" onclick="clickPortfolio()">Portfolio</button>
+    <button class="x" onmouseenter="hover()" onclick="clickNormal('https://x.com')">X</button>
 </div>
 
 </div>
 
-<!-- 🔊 SFX -->
+<!-- AUDIO -->
 <audio id="hoverSound" src="PopUp.wav"></audio>
 <audio id="clickSound" src="Accept.wav"></audio>
 <audio id="portfolioSound" src="Confeti.wav"></audio>
-
-<!-- 🎵 MUSICA -->
 <audio id="bgMusic" src="FallinFriends.mp3" loop></audio>
 
 <script>
@@ -141,31 +140,31 @@ const bgMusic = document.getElementById("bgMusic");
 
 let musicStarted = false;
 
-function startMusic() {
-    if (!musicStarted) {
-        bgMusic.volume = 0.25; // 🔥 bajo volumen
+function play(a){
+    a.currentTime = 0;
+    a.play().catch(()=>{});
+}
+
+function startMusic(){
+    if(!musicStarted){
+        bgMusic.volume = 0.15;
         bgMusic.play().catch(()=>{});
         musicStarted = true;
     }
 }
 
-function play(audio) {
-    audio.currentTime = 0;
-    audio.play().catch(()=>{});
-}
-
-function hover() {
+function hover(){
     startMusic();
     play(hoverSound);
 }
 
-function clickNormal(url) {
+function clickNormal(url){
     startMusic();
     play(clickSound);
     setTimeout(()=>window.open(url,"_blank"),150);
 }
 
-function clickPortfolio() {
+function clickPortfolio(){
     startMusic();
     play(portfolioSound);
     setTimeout(()=>window.location.href="portfolio.html",200);
