@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Asap:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 
-<title>El Pana Hot Dog</title>
+<title>Portfolio</title>
 
 <style>
 body {
@@ -15,10 +15,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-
-    font-family: 'Titan One', sans-serif;
-    color: white;
 
     background: linear-gradient(to bottom, #a056ff, #a098ff);
     overflow: hidden;
@@ -38,106 +34,112 @@ body::before {
     background-size: 200px;
 
     opacity: 0.15;
-    pointer-events: none;
 }
 
-.container {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-}
-
-h1 {
-    font-size: 60px;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-}
-
-/* HOT DOG BIG (más grande) */
-.tdog-wrap {
-    position: relative;
-    display: inline-block;
-}
-
-.tdog-wrap img {
+/* SLIDES */
+.slide {
     position: absolute;
-
-    top: -150px;
-    left: 65%;
-
-    width: 320px;
-    height: auto;
-
-    transform: translateX(-50%);
-    z-index: 0;
-    pointer-events: none;
-}
-
-.tdog {
-    position: relative;
-    z-index: 1;
-}
-
-/* BOTONES */
-.buttons {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
-    gap: 15px;
-    position: relative;
+    align-items: center;
+    transition: opacity 0.4s ease;
 }
 
-/* cursor también en botones */
-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 12px;
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
-    font-family: 'Asap', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
+/* VIDEO MÁS GRANDE */
+video {
+    width: 700px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+/* IMAGEN render */
+img.render {
+    width: 600px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+/* flechas */
+.arrow {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+
+    background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/UI_NavigationArrow_Outline.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
-
-    transition: 0.2s;
+    z-index: 10;
 }
 
-button:hover {
-    transform: scale(1.1);
+.arrow.left {
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-/* colores */
-.github { background: #24292e; color: white; }
-.youtube { background: #ff0000; color: white; }
-.x { background: #000000; color: white; }
-.portfolio { background: #ffd400; color: black; font-weight: 900; }
+.arrow.right {
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%) scaleX(-1);
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-    <h1>
-        I'm El Pana 
-        <span class="tdog-wrap">
-            <img src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/big.png">
-            <span class="tdog">Hot Dog</span>
-        </span>
-    </h1>
-
-    <div class="buttons">
-        <button class="github" onclick="window.open('https://github.com/ElPanaHotDog','_blank')">GitHub</button>
-
-        <button class="youtube" onclick="window.open('https://youtube.com','_blank')">YouTube</button>
-
-        <button class="portfolio" onclick="window.location.href='portfolio.html'">
-            Portfolio
-        </button>
-
-        <button class="x" onclick="window.open('https://x.com','_blank')">X</button>
-    </div>
-
+<!-- SLIDE 1 VIDEO -->
+<div class="slide" id="slide1">
+    <video controls>
+        <source src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/SpaceCircuit.mp4" type="video/mp4">
+    </video>
 </div>
+
+<!-- SLIDE 2 RENDER -->
+<div class="slide hidden" id="slide2">
+    <img class="render" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/Render.png">
+</div>
+
+<!-- FLECHAS -->
+<div class="arrow left" onclick="prevSlide()"></div>
+<div class="arrow right" onclick="nextSlide()"></div>
+
+<script>
+let current = 0;
+
+const slides = [
+    document.getElementById("slide1"),
+    document.getElementById("slide2")
+];
+
+function showSlide(index) {
+    slides.forEach((s, i) => {
+        if (i === index) {
+            s.classList.remove("hidden");
+        } else {
+            s.classList.add("hidden");
+        }
+    });
+}
+
+function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+}
+
+function prevSlide() {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+}
+</script>
 
 </body>
 </html>
