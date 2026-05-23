@@ -17,8 +17,8 @@ body {
     align-items: center;
 
     background: linear-gradient(to bottom, #a056ff, #a098ff);
-    position: relative;
     overflow: hidden;
+    position: relative;
 
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
@@ -36,38 +36,58 @@ body::before {
     opacity: 0.15;
 }
 
-/* video */
-.video-container {
-    position: relative;
-    z-index: 2;
+/* SLIDES */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease;
 }
 
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* VIDEO MÁS GRANDE */
 video {
-    width: 420px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    width: 700px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+/* IMAGEN render */
+img.render {
+    width: 600px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
 /* flechas */
 .arrow {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
+
     background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/UI_NavigationArrow_Outline.png");
     background-size: contain;
     background-repeat: no-repeat;
+
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
-    z-index: 3;
+    z-index: 10;
 }
 
 .arrow.left {
-    left: 20%;
+    left: 5%;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .arrow.right {
-    right: 20%;
+    right: 5%;
     top: 50%;
     transform: translateY(-50%) scaleX(-1);
 }
@@ -76,15 +96,50 @@ video {
 
 <body>
 
-<div class="arrow left" onclick="alert('Cambia a sección anterior')"></div>
-
-<div class="video-container">
+<!-- SLIDE 1 VIDEO -->
+<div class="slide" id="slide1">
     <video controls>
         <source src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/SpaceCircuit.mp4" type="video/mp4">
     </video>
 </div>
 
-<div class="arrow right" onclick="alert('Cambia a siguiente sección')"></div>
+<!-- SLIDE 2 RENDER -->
+<div class="slide hidden" id="slide2">
+    <img class="render" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/Render.png">
+</div>
+
+<!-- FLECHAS -->
+<div class="arrow left" onclick="prevSlide()"></div>
+<div class="arrow right" onclick="nextSlide()"></div>
+
+<script>
+let current = 0;
+
+const slides = [
+    document.getElementById("slide1"),
+    document.getElementById("slide2")
+];
+
+function showSlide(index) {
+    slides.forEach((s, i) => {
+        if (i === index) {
+            s.classList.remove("hidden");
+        } else {
+            s.classList.add("hidden");
+        }
+    });
+}
+
+function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+}
+
+function prevSlide() {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+}
+</script>
 
 </body>
 </html>
