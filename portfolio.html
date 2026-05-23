@@ -36,18 +36,19 @@ body::before {
     opacity: 0.15;
 }
 
-/* CONTENEDOR SLIDES */
+/* container */
 .container {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-/* SLIDES */
+/* SLIDES BASE */
 .slide {
     position: absolute;
     width: 100%;
     height: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +62,22 @@ body::before {
 .left { transform: translateX(-100%); }
 .right { transform: translateX(100%); }
 
-/* VIDEO */
+/* contenido */
+.title {
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+.desc {
+    font-size: 16px;
+    color: white;        /* ✔ FIX */
+    text-align: center;  /* ✔ FIX */
+    opacity: 0.9;
+    max-width: 500px;
+    margin-bottom: 10px;
+}
+
+/* media */
 video {
     width: 720px;
     border-radius: 18px;
@@ -74,21 +90,13 @@ img.render {
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
-/* TEXTO */
-.title {
-    font-size: 32px;
-    margin-top: 15px;
+img.skin {
+    width: 600px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
-.desc {
-    font-size: 16px;
-    opacity: 0.8;
-    margin-bottom: 10px;
-    text-align: center;
-    max-width: 500px;
-}
-
-/* FLECHAS MÁS CERCA */
+/* flechas */
 .arrow {
     position: absolute;
     width: 80px;
@@ -121,59 +129,71 @@ img.render {
 <div class="container">
 
     <!-- SLIDE 1 -->
-    <div class="slide center" id="slide1">
+    <div class="slide center" id="slide0">
         <div style="text-align:center;">
             <div class="title">Space Circuit</div>
             <div class="desc">A map with space theme that took 3 weeks to complete</div>
-
             <video controls>
-                <source src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/SpaceCircuit.mp4" type="video/mp4">
+                <source src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/SpaceCircuit.mp4">
             </video>
         </div>
     </div>
 
     <!-- SLIDE 2 -->
-    <div class="slide right" id="slide2">
+    <div class="slide right" id="slide1">
         <div style="text-align:center;">
             <div class="title">Render for a YouTuber's Thumbnail</div>
             <div class="desc">This is a space themed render made in Blender, created for a YouTuber's thumbnail</div>
-
             <img class="render" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/Render.png">
+        </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide right" id="slide2">
+        <div style="text-align:center;">
+            <div class="title">Jabirds Skin</div>
+            <div class="desc">This is a skin I made for a Hispanic Fall Guys YouTuber (the skin can be used in BettrFG)</div>
+            <img class="skin" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/JabirdsSkin.jpg">
         </div>
     </div>
 
 </div>
 
 <!-- FLECHAS -->
-<div class="arrow left" onclick="moveLeft()"></div>
-<div class="arrow right" onclick="moveRight()"></div>
+<div class="arrow left" onclick="move(-1)"></div>
+<div class="arrow right" onclick="move(1)"></div>
 
 <script>
 let index = 0;
 
 const slides = [
+    document.getElementById("slide0"),
     document.getElementById("slide1"),
     document.getElementById("slide2")
 ];
 
-function update() {
+function update(direction) {
     slides.forEach((s, i) => {
         s.classList.remove("left", "center", "right");
 
-        if (i === index) s.classList.add("center");
-        else if (i < index) s.classList.add("left");
-        else s.classList.add("right");
+        if (i === index) {
+            s.classList.add("center");
+        } else if (i < index) {
+            s.classList.add("left");
+        } else {
+            s.classList.add("right");
+        }
     });
 }
 
-function moveRight() {
-    index = (index + 1) % slides.length;
-    update();
-}
+/* ✔ FIX dirección correcta */
+function move(dir) {
+    index += dir;
 
-function moveLeft() {
-    index = (index - 1 + slides.length) % slides.length;
-    update();
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
+    update(dir);
 }
 
 update();
