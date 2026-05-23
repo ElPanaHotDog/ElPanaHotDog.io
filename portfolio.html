@@ -21,16 +21,16 @@ body {
     background: linear-gradient(to bottom, #a056ff, #a098ff);
     font-family: 'Titan One', sans-serif;
 
-    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
+    cursor: url("cursor.png"), auto;
 }
 
-/* patrón animado */
+/* patrón */
 body::before {
     content: "";
     position: absolute;
     inset: 0;
 
-    background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/S12_Pattern.png");
+    background-image: url("S12_Pattern.png");
     background-repeat: repeat;
     background-size: 200px;
 
@@ -45,14 +45,8 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-/* container */
-.container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
+.container { position: relative; width: 100%; height: 100%; }
 
-/* slides */
 .slide {
     position: absolute;
     width: 100%;
@@ -70,144 +64,105 @@ body::before {
 .left { transform: translateX(-100%); }
 .right { transform: translateX(100%); }
 
-/* textos */
-.title {
-    font-size: 32px;
-    margin-top: 10px;
-}
+.title { font-size: 32px; }
+.desc { color: white; text-align: center; max-width: 500px; }
 
-.desc {
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    opacity: 0.9;
-    max-width: 500px;
-    margin-bottom: 10px;
-}
-
-/* media */
-video { width: 720px; border-radius: 18px; }
-img { width: 600px; border-radius: 18px; }
-
-/* flechas */
 .arrow {
     position: absolute;
     width: 80px;
     height: 80px;
-
-    background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/UI_NavigationArrow_Outline.png");
+    background-image: url("UI_NavigationArrow_Outline.png");
     background-size: contain;
     background-repeat: no-repeat;
-
-    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 
     transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.arrow.left {
-    left: 15%;
-    top: 50%;
-    transform: translateY(-50%);
-}
+.arrow.left { left: 15%; top: 50%; transform: translateY(-50%); }
+.arrow.right { right: 15%; top: 50%; transform: translateY(-50%) scaleX(-1); }
 
-.arrow.left:hover {
-    transform: translateY(-50%) scale(1.2);
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
-}
-
-.arrow.left:active {
-    transform: translateY(-50%) scale(0.95);
-}
-
-.arrow.right {
-    right: 15%;
-    top: 50%;
-    transform: translateY(-50%) scaleX(-1);
-}
-
-.arrow.right:hover {
-    transform: translateY(-50%) scaleX(-1) scale(1.2);
-}
-
-.arrow.right:active {
-    transform: translateY(-50%) scaleX(-1) scale(0.95);
-}
+.arrow:hover { transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 10px white); }
+.arrow:active { transform: translateY(-50%) scale(0.95); }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
     <div class="slide center" id="s0">
-        <div style="text-align:center;">
-            <div class="title">Space Circuit</div>
-            <div class="desc">A map with space theme that took 3 weeks to complete</div>
-            <video controls>
-                <source src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/SpaceCircuit.mp4">
-            </video>
-        </div>
+        <div class="title">Space Circuit</div>
+        <div class="desc">A map with space theme that took 3 weeks to complete</div>
+        <video width="720" controls src="SpaceCircuit.mp4"></video>
     </div>
 
     <div class="slide right" id="s1">
-        <div style="text-align:center;">
-            <div class="title">Render for a YouTuber's Thumbnail</div>
-            <div class="desc">This is a space themed render made in Blender, created for a YouTuber's thumbnail</div>
-            <img src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/Render.png">
-        </div>
+        <div class="title">Render</div>
+        <div class="desc">Blender render for thumbnail</div>
+        <img width="600" src="Render.png">
     </div>
 
     <div class="slide right" id="s2">
-        <div style="text-align:center;">
-            <div class="title">Jabirds Skin</div>
-            <div class="desc">This is a skin I made for a Hispanic YouTuber (usable in BettrFG)</div>
-            <img src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/JabirdsSkin.jpg">
-        </div>
+        <div class="title">Jabirds Skin</div>
+        <div class="desc">Skin for Hispanic YouTuber</div>
+        <img width="600" src="JabirdsSkin.jpg">
     </div>
-
 </div>
 
 <div class="arrow left" onmouseenter="hover()" onclick="move(-1)"></div>
 <div class="arrow right" onmouseenter="hover()" onclick="move(1)"></div>
 
-<!-- AUDIO -->
-<audio id="hoverSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#65 (UI_Gen_PopUp).wav"></audio>
-<audio id="clickSound" src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/BNK_UI_MainMenu#3 (UI_MainMenu_Custo_Accept).wav"></audio>
+<!-- SFX -->
+<audio id="hoverSound" src="PopUp.wav"></audio>
+<audio id="clickSound" src="Accept.wav"></audio>
+
+<!-- MUSIC -->
+<audio id="bgMusic" src="FallinFriends.mp3" loop></audio>
 
 <script>
 let index = 0;
 
-const slides = [
-    document.getElementById("s0"),
-    document.getElementById("s1"),
-    document.getElementById("s2")
-];
+const slides = [...document.querySelectorAll(".slide")];
 
 const hoverSound = document.getElementById("hoverSound");
 const clickSound = document.getElementById("clickSound");
+const bgMusic = document.getElementById("bgMusic");
 
-function hover() {
-    hoverSound.currentTime = 0;
-    hoverSound.play();
+let started = false;
+
+function startMusic(){
+    if(!started){
+        bgMusic.volume = 0.2;
+        bgMusic.play().catch(()=>{});
+        started = true;
+    }
 }
 
-function update() {
-    slides.forEach((s, i) => {
+function play(a){
+    a.currentTime = 0;
+    a.play().catch(()=>{});
+}
+
+function hover(){
+    startMusic();
+    play(hoverSound);
+}
+
+function update(){
+    slides.forEach((s,i)=>{
         s.classList.remove("left","center","right");
-        if (i === index) s.classList.add("center");
-        else if (i < index) s.classList.add("left");
+        if(i===index) s.classList.add("center");
+        else if(i<index) s.classList.add("left");
         else s.classList.add("right");
     });
 }
 
-function move(dir) {
-    clickSound.currentTime = 0;
-    clickSound.play();
+function move(dir){
+    startMusic();
+    play(clickSound);
 
     index += dir;
-
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
+    if(index<0) index = slides.length-1;
+    if(index>=slides.length) index = 0;
 
     update();
 }
