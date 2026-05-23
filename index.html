@@ -22,9 +22,12 @@ body {
     background: linear-gradient(to bottom, #a056ff, #a098ff);
     overflow: hidden;
     position: relative;
+
+    /* 🔥 cursor personalizado */
+    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
 
-/* Patrón de fondo */
+/* patrón intacto */
 body::before {
     content: "";
     position: absolute;
@@ -38,49 +41,49 @@ body::before {
     pointer-events: none;
 }
 
-/* Contenido */
+/* contenedor */
 .container {
     position: relative;
     z-index: 1;
     text-align: center;
 }
 
+/* título */
 h1 {
     font-size: 60px;
     margin-bottom: 30px;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
 }
 
-/* 🔥 Parte especial "T Dog" */
-.tdog {
+/* bloque hot dog */
+.tdog-wrap {
     position: relative;
     display: inline-block;
-    z-index: 0;
 }
 
-/* Imagen detrás del texto */
-.tdog::before {
-    content: "";
+/* big.png */
+.tdog-wrap img {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 140px;
-    height: 140px;
 
-    background-image: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/big.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    top: -120px;
+    left: 65%;
 
-    opacity: 0.5;
-    z-index: -1;
+    width: 240px;
+    height: auto;
+
+    transform: translateX(-50%);
+    z-index: 0;
+
     pointer-events: none;
-    filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
 }
 
-/* Botones */
+/* texto encima */
+.tdog {
+    position: relative;
+    z-index: 1;
+}
+
+/* botones */
 .buttons {
     display: flex;
     gap: 15px;
@@ -115,7 +118,11 @@ button:hover {
 <div class="container">
 
     <h1>
-        I'm El Pana <span class="tdog">Hot Dog</span>
+        I'm El Pana 
+        <span class="tdog-wrap">
+            <img src="https://ElPanaHotDog.github.io/ElPanaHotDog.io/big.png">
+            <span class="tdog">Hot Dog</span>
+        </span>
     </h1>
 
     <div class="buttons">
