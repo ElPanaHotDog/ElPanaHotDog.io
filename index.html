@@ -16,6 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
     font-family: 'Titan One', sans-serif;
     color: white;
 
@@ -23,11 +24,10 @@ body {
     overflow: hidden;
     position: relative;
 
-    /* 🔥 cursor personalizado */
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
 
-/* patrón intacto */
+/* patrón */
 body::before {
     content: "";
     position: absolute;
@@ -41,55 +41,52 @@ body::before {
     pointer-events: none;
 }
 
-/* contenedor */
 .container {
     position: relative;
     z-index: 1;
     text-align: center;
 }
 
-/* título */
 h1 {
     font-size: 60px;
     margin-bottom: 30px;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
 }
 
-/* bloque hot dog */
+/* HOT DOG BIG (más grande) */
 .tdog-wrap {
     position: relative;
     display: inline-block;
 }
 
-/* big.png */
 .tdog-wrap img {
     position: absolute;
 
-    top: -120px;
+    top: -150px;
     left: 65%;
 
-    width: 240px;
+    width: 320px;
     height: auto;
 
     transform: translateX(-50%);
     z-index: 0;
-
     pointer-events: none;
 }
 
-/* texto encima */
 .tdog {
     position: relative;
     z-index: 1;
 }
 
-/* botones */
+/* BOTONES */
 .buttons {
     display: flex;
-    gap: 15px;
     justify-content: center;
+    gap: 15px;
+    position: relative;
 }
 
+/* cursor también en botones */
 button {
     padding: 12px 20px;
     border: none;
@@ -97,9 +94,10 @@ button {
 
     font-family: 'Asap', sans-serif;
     font-weight: 700;
-
     font-size: 18px;
-    cursor: pointer;
+
+    cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
+
     transition: 0.2s;
 }
 
@@ -107,9 +105,11 @@ button:hover {
     transform: scale(1.1);
 }
 
+/* colores */
 .github { background: #24292e; color: white; }
 .youtube { background: #ff0000; color: white; }
 .x { background: #000000; color: white; }
+.portfolio { background: #ffd400; color: black; font-weight: 900; }
 </style>
 </head>
 
@@ -126,9 +126,15 @@ button:hover {
     </h1>
 
     <div class="buttons">
-        <button class="github" onclick="window.open('https://github.com/ElPanaHotDog', '_blank')">GitHub</button>
-        <button class="youtube" onclick="window.open('https://youtube.com/', '_blank')">YouTube</button>
-        <button class="x" onclick="window.open('https://x.com/', '_blank')">X</button>
+        <button class="github" onclick="window.open('https://github.com/ElPanaHotDog','_blank')">GitHub</button>
+
+        <button class="youtube" onclick="window.open('https://youtube.com','_blank')">YouTube</button>
+
+        <button class="portfolio" onclick="window.location.href='portfolio.html'">
+            Portfolio
+        </button>
+
+        <button class="x" onclick="window.open('https://x.com','_blank')">X</button>
     </div>
 
 </div>
