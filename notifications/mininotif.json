@@ -1,4 +1,6 @@
 {
-    "Title": "Test",
-    "Message": "Test"
+  "id": "mini_001",
+  "title": "¡FreeCam Actualizado!",
+  "message": "Todo está funcionando correctamente.",
+  "enabled": true
 }
