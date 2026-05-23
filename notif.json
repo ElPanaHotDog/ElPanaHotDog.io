@@ -1,0 +1,7 @@
+{
+  "id": "2",
+  "title": "Aviso",
+  "message": "Evento iniciado",
+  "enabled": true,
+  "popupType": "MT_OK"
+}
