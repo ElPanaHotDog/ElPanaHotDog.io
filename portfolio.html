@@ -9,111 +9,94 @@
 <title>Portfolio</title>
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: linear-gradient(to bottom, #a056ff, #a098ff);
-    font-family: 'Titan One', sans-serif;
-
-    cursor: url("cursor.png"), auto;
+    background:linear-gradient(to bottom,#a056ff,#a098ff);
+    font-family:'Titan One';
+    cursor:url("cursor.png"),auto;
 }
 
-/* patrón */
-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background-image: url("S12_Pattern.png");
-    background-repeat: repeat;
-    background-size: 200px;
-
-    opacity: 0.15;
-    pointer-events: none;
-
-    animation: movePattern 20s linear infinite;
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:url("S12_Pattern.png");
+    background-repeat:repeat;
+    background-size:200px;
+    opacity:0.15;
+    animation:move 20s linear infinite;
+    pointer-events:none;
 }
 
-@keyframes movePattern {
-    from { background-position: 0 0; }
-    to { background-position: 400px 400px; }
+@keyframes move{
+    from{background-position:0 0;}
+    to{background-position:400px 400px;}
 }
 
-.container { position: relative; width: 100%; height: 100%; }
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    transition: transform 0.6s ease;
+.container{
+    position:relative;
+    width:100%;
+    height:100%;
 }
 
-.center { transform: translateX(0); }
-.left { transform: translateX(-100%); }
-.right { transform: translateX(100%); }
+/* SLIDES */
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 
-.title { font-size: 32px; }
-.desc { color: white; text-align: center; max-width: 500px; }
-
-video { width: 720px; border-radius: 18px; }
-img { width: 600px; border-radius: 18px; }
-
-/* ✔ FLECHAS FIX FINAL */
-.arrow {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-
-    background-image: url("UI_NavigationArrow_Outline.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-
-    cursor: url("cursor.png"), auto;
-
-    transition: transform 0.15s ease, filter 0.15s ease;
+    transition:transform .5s ease, opacity .5s ease;
+    opacity:0;
+    transform:translateX(100%);
 }
 
-.arrow.left {
-    left: 15%;
-    top: 50%;
-    transform: translateY(-50%);
+.slide.active{
+    opacity:1;
+    transform:translateX(0);
 }
 
-.arrow.left:hover {
-    transform: translateY(-50%) scale(1.2);
-    filter: drop-shadow(0 0 10px white);
+.slide.left{
+    transform:translateX(-100%);
 }
 
-.arrow.left:active {
-    transform: translateY(-50%) scale(0.95);
+.title{font-size:32px;}
+.desc{color:white;text-align:center;max-width:500px;}
+
+video{width:720px;border-radius:18px;}
+img{width:600px;border-radius:18px;}
+
+/* FLECHAS NUEVAS LIMPIAS */
+.arrow{
+    position:absolute;
+    top:50%;
+    width:80px;
+    height:80px;
+    background-image:url("UI_NavigationArrow_Outline.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    transform:translateY(-50%);
+    cursor:pointer;
+    transition:.2s;
 }
 
-.arrow.right {
-    right: 15%;
-    top: 50%;
-    transform: translateY(-50%) scaleX(-1);
+.arrow:hover{
+    transform:translateY(-50%) scale(1.2);
+    filter:drop-shadow(0 0 10px white);
 }
 
-.arrow.right:hover {
-    transform: translateY(-50%) scaleX(-1) scale(1.2);
-    filter: drop-shadow(0 0 10px white);
-}
-
-.arrow.right:active {
-    transform: translateY(-50%) scaleX(-1) scale(0.95);
-}
+.left{left:15%;}
+.right{right:15%; transform:translateY(-50%) scaleX(-1);}
+.right:hover{transform:translateY(-50%) scaleX(-1) scale(1.2);}
 </style>
 </head>
 
@@ -121,84 +104,73 @@ img { width: 600px; border-radius: 18px; }
 
 <div class="container">
 
-    <div class="slide center" id="s0">
-        <div class="title">Space Circuit</div>
-        <div class="desc">A map with space theme that took 3 weeks to complete</div>
-        <video controls src="SpaceCircuit.mp4"></video>
-    </div>
+<div class="slide active">
+    <div class="title">Space Circuit</div>
+    <div class="desc">A map with space theme that took 3 weeks</div>
+    <video src="SpaceCircuit.mp4" controls></video>
+</div>
 
-    <div class="slide right" id="s1">
-        <div class="title">Render</div>
-        <div class="desc">Blender render for thumbnail</div>
-        <img src="Render.png">
-    </div>
+<div class="slide">
+    <div class="title">Render</div>
+    <div class="desc">Blender thumbnail render</div>
+    <img src="Render.png">
+</div>
 
-    <div class="slide right" id="s2">
-        <div class="title">Jabirds Skin</div>
-        <div class="desc">Skin for Hispanic YouTuber</div>
-        <img src="JabirdsSkin.jpg">
-    </div>
+<div class="slide">
+    <div class="title">Jabirds Skin</div>
+    <div class="desc">Skin for Hispanic YouTuber</div>
+    <img src="JabirdsSkin.jpg">
+</div>
 
 </div>
 
-<div class="arrow left" onmouseenter="hover()" onclick="move(-1)"></div>
-<div class="arrow right" onmouseenter="hover()" onclick="move(1)"></div>
+<div class="arrow left" onclick="move(-1)"></div>
+<div class="arrow right" onclick="move(1)"></div>
 
-<!-- AUDIO -->
-<audio id="hoverSound" src="PopUp.wav"></audio>
-<audio id="clickSound" src="Accept.wav"></audio>
-<audio id="bgMusic" src="FallinFriends.mp3" loop></audio>
+<audio id="bg" src="FallinFriends.mp3" loop></audio>
+<audio id="hover" src="PopUp.wav"></audio>
+<audio id="click" src="Accept.wav"></audio>
 
 <script>
-let index = 0;
+const slides=[...document.querySelectorAll(".slide")];
+let i=0;
 
-const slides = [...document.querySelectorAll(".slide")];
+const bg=document.getElementById("bg");
+const hoverS=document.getElementById("hover");
+const clickS=document.getElementById("click");
 
-const hoverSound = document.getElementById("hoverSound");
-const clickSound = document.getElementById("clickSound");
-const bgMusic = document.getElementById("bgMusic");
+let started=false;
 
-let started = false;
-
-function play(a){
-    a.currentTime = 0;
-    a.play().catch(()=>{});
-}
-
-/* 🔥 FIX MÚSICA REAL */
 function startMusic(){
     if(!started){
-        bgMusic.volume = 0.07; // MÁS BAJO QUE HOME
-        bgMusic.play().catch(()=>{});
-        started = true;
+        bg.volume=0.07;
+        bg.play().catch(()=>{});
+        started=true;
     }
 }
 
-/* desbloqueo real */
-document.addEventListener("click", startMusic);
-document.addEventListener("mousemove", startMusic);
+document.addEventListener("click",startMusic);
 
-function hover(){
-    startMusic();
-    play(hoverSound);
+function play(a){
+    a.currentTime=0;
+    a.play().catch(()=>{});
 }
 
 function update(){
-    slides.forEach((s,i)=>{
-        s.classList.remove("left","center","right");
-        if(i===index) s.classList.add("center");
-        else if(i<index) s.classList.add("left");
-        else s.classList.add("right");
+    slides.forEach((s,idx)=>{
+        s.classList.remove("active","left");
+        if(idx===i) s.classList.add("active");
+        else if(idx<i) s.classList.add("left");
     });
 }
 
 function move(dir){
     startMusic();
-    play(clickSound);
+    play(clickS);
 
-    index += dir;
-    if(index<0) index = slides.length-1;
-    if(index>=slides.length) index = 0;
+    i+=dir;
+    if(i<0)i=slides.length-1;
+    if(i>=slides.length)i=0;
 
     update();
 }
