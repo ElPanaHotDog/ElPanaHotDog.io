@@ -28,9 +28,7 @@ body {
     position: relative;
 }
 
-/* =========================
-   🧠 CAPA 1: PATRÓN (FONDO)
-========================= */
+/* 🌫 PATRÓN (FONDO) */
 body::before {
     content: "";
     position: absolute;
@@ -53,13 +51,12 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-/* =========================
-   🧠 CAPA 2: BIG (DEBAJO UI)
-========================= */
+/* 🖼 BIG (ENTRE PATRÓN Y UI) */
 .big-layer {
     position: absolute;
+
     top: 40%;
-    left: 55%;
+    left: 62%; /* 🔥 ajustado a la derecha */
     transform: translate(-50%, -50%);
 
     width: 320px;
@@ -68,9 +65,7 @@ body::before {
     pointer-events: none;
 }
 
-/* =========================
-   🧠 CAPA 3: UI (ARRIBA TODO)
-========================= */
+/* 🧠 UI */
 .ui {
     position: relative;
     z-index: 3;
@@ -104,7 +99,7 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* COLORES CORRECTOS */
+/* 🎨 COLORES */
 .github { background: #2b2f36; color: white; }
 .youtube { background: #ff0000; color: white; }
 .portfolio { background: #ffd400; color: black; }
@@ -114,7 +109,7 @@ button:hover {
 
 <body>
 
-<!-- BIG (entre patrón y UI) -->
+<!-- 🖼 BIG -->
 <img class="big-layer" src="big.png">
 
 <!-- UI -->
@@ -131,7 +126,7 @@ button:hover {
 
 </div>
 
-<!-- 🔊 AUDIO SYSTEM LIMPIO -->
+<!-- 🔊 AUDIO -->
 <audio id="music" src="FallinFriends.mp3" loop></audio>
 <audio id="hoverS" src="PopUp.wav"></audio>
 <audio id="clickS" src="Accept.wav"></audio>
@@ -139,49 +134,52 @@ button:hover {
 
 <script>
 
-/* =========================
-   🔊 AUDIO MANAGER ÚNICO
-========================= */
 const music = document.getElementById("music");
 const hoverS = document.getElementById("hoverS");
 const clickS = document.getElementById("clickS");
 const portfolioS = document.getElementById("portfolioS");
 
-let started = false;
+let unlocked = false;
 
-function startAudio(){
-    if(!started){
-        music.volume = 0.12; // HOME
-        music.play().catch(()=>{});
-        started = true;
-    }
+/* 🔊 AUDIO FIX REAL */
+function unlockAudio(){
+    if(unlocked) return;
+
+    unlocked = true;
+
+    music.volume = 0.12;
+
+    music.play().catch(()=>{});
+
+    // segundo intento por compatibilidad
+    setTimeout(()=>music.play().catch(()=>{}), 50);
 }
 
-document.addEventListener("click", startAudio);
-document.addEventListener("mousemove", startAudio);
-document.addEventListener("keydown", startAudio);
+/* desbloqueo global (obligatorio por navegador) */
+window.addEventListener("click", unlockAudio);
+window.addEventListener("mousemove", unlockAudio);
+window.addEventListener("keydown", unlockAudio);
 
+/* 🔊 SFX */
 function play(s){
+    if(!s) return;
     s.currentTime = 0;
     s.play().catch(()=>{});
 }
 
-/* =========================
-   UI SOUND EVENTS
-========================= */
 function hover(){
-    startAudio();
+    unlockAudio();
     play(hoverS);
 }
 
 function openLink(url){
-    startAudio();
+    unlockAudio();
     play(clickS);
     setTimeout(()=>window.open(url,"_blank"),150);
 }
 
 function goPortfolio(){
-    startAudio();
+    unlockAudio();
     play(portfolioS);
     setTimeout(()=>location.href="portfolio.html",700);
 }
