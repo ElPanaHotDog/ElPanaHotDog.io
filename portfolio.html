@@ -13,6 +13,7 @@ body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +24,7 @@ body {
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
 }
 
-/* patrón */
+/* 🔥 patrón animado */
 body::before {
     content: "";
     position: absolute;
@@ -34,6 +35,14 @@ body::before {
     background-size: 200px;
 
     opacity: 0.15;
+    pointer-events: none;
+
+    animation: movePattern 20s linear infinite;
+}
+
+@keyframes movePattern {
+    from { background-position: 0 0; }
+    to { background-position: 400px 400px; }
 }
 
 /* container */
@@ -43,26 +52,25 @@ body::before {
     height: 100%;
 }
 
-/* SLIDES BASE */
+/* slides */
 .slide {
     position: absolute;
     width: 100%;
     height: 100%;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 
     transition: transform 0.6s ease;
 }
 
-/* posiciones */
 .center { transform: translateX(0); }
 .left { transform: translateX(-100%); }
 .right { transform: translateX(100%); }
 
-/* contenido */
+/* texto */
 .title {
     font-size: 32px;
     margin-top: 10px;
@@ -70,8 +78,8 @@ body::before {
 
 .desc {
     font-size: 16px;
-    color: white;        /* ✔ FIX */
-    text-align: center;  /* ✔ FIX */
+    color: white;
+    text-align: center;
     opacity: 0.9;
     max-width: 500px;
     margin-bottom: 10px;
@@ -84,13 +92,7 @@ video {
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
 
-img.render {
-    width: 600px;
-    border-radius: 18px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-}
-
-img.skin {
+img.render, img.skin {
     width: 600px;
     border-radius: 18px;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
@@ -107,7 +109,17 @@ img.skin {
     background-repeat: no-repeat;
 
     cursor: url("https://ElPanaHotDog.github.io/ElPanaHotDog.io/cursor.png"), auto;
-    z-index: 10;
+
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.arrow:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
+}
+
+.arrow:active {
+    transform: scale(0.95);
 }
 
 .arrow.left {
@@ -121,6 +133,14 @@ img.skin {
     top: 50%;
     transform: translateY(-50%) scaleX(-1);
 }
+
+.arrow.right:hover {
+    transform: translateY(-50%) scaleX(-1) scale(1.2);
+}
+
+.arrow.right:active {
+    transform: translateY(-50%) scaleX(-1) scale(0.95);
+}
 </style>
 </head>
 
@@ -128,8 +148,7 @@ img.skin {
 
 <div class="container">
 
-    <!-- SLIDE 1 -->
-    <div class="slide center" id="slide0">
+    <div class="slide center" id="s0">
         <div style="text-align:center;">
             <div class="title">Space Circuit</div>
             <div class="desc">A map with space theme that took 3 weeks to complete</div>
@@ -139,8 +158,7 @@ img.skin {
         </div>
     </div>
 
-    <!-- SLIDE 2 -->
-    <div class="slide right" id="slide1">
+    <div class="slide right" id="s1">
         <div style="text-align:center;">
             <div class="title">Render for a YouTuber's Thumbnail</div>
             <div class="desc">This is a space themed render made in Blender, created for a YouTuber's thumbnail</div>
@@ -148,8 +166,7 @@ img.skin {
         </div>
     </div>
 
-    <!-- SLIDE 3 -->
-    <div class="slide right" id="slide2">
+    <div class="slide right" id="s2">
         <div style="text-align:center;">
             <div class="title">Jabirds Skin</div>
             <div class="desc">This is a skin I made for a Hispanic Fall Guys YouTuber (the skin can be used in BettrFG)</div>
@@ -159,41 +176,31 @@ img.skin {
 
 </div>
 
-<!-- FLECHAS -->
 <div class="arrow left" onclick="move(-1)"></div>
 <div class="arrow right" onclick="move(1)"></div>
 
 <script>
 let index = 0;
-
 const slides = [
-    document.getElementById("slide0"),
-    document.getElementById("slide1"),
-    document.getElementById("slide2")
+    document.getElementById("s0"),
+    document.getElementById("s1"),
+    document.getElementById("s2")
 ];
 
-function update(direction) {
+function update() {
     slides.forEach((s, i) => {
-        s.classList.remove("left", "center", "right");
-
-        if (i === index) {
-            s.classList.add("center");
-        } else if (i < index) {
-            s.classList.add("left");
-        } else {
-            s.classList.add("right");
-        }
+        s.classList.remove("left","center","right");
+        if (i === index) s.classList.add("center");
+        else if (i < index) s.classList.add("left");
+        else s.classList.add("right");
     });
 }
 
-/* ✔ FIX dirección correcta */
 function move(dir) {
     index += dir;
-
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
-
-    update(dir);
+    update();
 }
 
 update();
