@@ -12,6 +12,8 @@
 body {
     margin: 0;
     height: 100vh;
+    overflow: hidden;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,13 +23,14 @@ body {
     color: white;
 
     background: linear-gradient(to bottom, #a056ff, #a098ff);
-    overflow: hidden;
 
     cursor: url("cursor.png"), auto;
     position: relative;
 }
 
-/* 🔥 patrón (FONDO) */
+/* =========================
+   🧠 CAPA 1: PATRÓN (FONDO)
+========================= */
 body::before {
     content: "";
     position: absolute;
@@ -41,7 +44,7 @@ body::before {
 
     animation: move 20s linear infinite;
 
-    z-index: 0; /* IMPORTANTE */
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -50,32 +53,32 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-/* CONTENIDO ENCIMA DEL PATRÓN */
-.container {
-    position: relative;
+/* =========================
+   🧠 CAPA 2: BIG (DEBAJO UI)
+========================= */
+.big-layer {
+    position: absolute;
+    top: 40%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+
+    width: 320px;
+
     z-index: 2;
+    pointer-events: none;
+}
+
+/* =========================
+   🧠 CAPA 3: UI (ARRIBA TODO)
+========================= */
+.ui {
+    position: relative;
+    z-index: 3;
     text-align: center;
 }
 
 h1 {
     font-size: 60px;
-}
-
-/* 🔥 BIG BIEN POSICIONADO (ENCIMA DEL PATRÓN) */
-.tdog-wrap {
-    position: relative;
-    display: inline-block;
-}
-
-.tdog-wrap img {
-    position: absolute;
-    top: -150px;
-    left: 65%;
-    width: 320px;
-    transform: translateX(-50%);
-
-    z-index: 5; /* 🔥 ESTO LO SACA DEL PATRÓN */
-    pointer-events: none;
 }
 
 /* BOTONES */
@@ -84,7 +87,6 @@ h1 {
     gap: 15px;
 }
 
-/* IMPORTANTE: botones base */
 button {
     padding: 12px 20px;
     border: none;
@@ -96,107 +98,94 @@ button {
 
     cursor: url("cursor.png"), auto;
     transition: 0.2s;
-    z-index: 3;
 }
 
 button:hover {
     transform: scale(1.1);
 }
 
-/* 🎨 COLORES (AHORA SÍ FUNCIONAN) */
-.github {
-    background: #2b2f36;
-    color: white;
-}
-
-.youtube {
-    background: #ff0000;
-    color: white;
-}
-
-.portfolio {
-    background: #ffd400;
-    color: black;
-}
-
-.x {
-    background: #000000;
-    color: white;
-}
+/* COLORES CORRECTOS */
+.github { background: #2b2f36; color: white; }
+.youtube { background: #ff0000; color: white; }
+.portfolio { background: #ffd400; color: black; }
+.x { background: #000000; color: white; }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- BIG (entre patrón y UI) -->
+<img class="big-layer" src="big.png">
 
-<h1>
-    I'm El Pana
-    <span class="tdog-wrap">
-        <img src="big.png">
-        Hot Dog
-    </span>
-</h1>
+<!-- UI -->
+<div class="ui">
+
+<h1>I'm El Pana Hot Dog</h1>
 
 <div class="buttons">
-    <!-- 🔥 IMPORTANTE: clases SÍ asignadas -->
-    <button class="github" onmouseenter="hover()" onclick="go('https://github.com')">GitHub</button>
-    <button class="youtube" onmouseenter="hover()" onclick="go('https://youtube.com')">YouTube</button>
-    <button class="portfolio" onmouseenter="hover()" onclick="openPortfolio()">Portfolio</button>
-    <button class="x" onmouseenter="hover()" onclick="go('https://x.com')">X</button>
+    <button class="github" onmouseenter="hover()" onclick="openLink('https://github.com')">GitHub</button>
+    <button class="youtube" onmouseenter="hover()" onclick="openLink('https://youtube.com')">YouTube</button>
+    <button class="portfolio" onmouseenter="hover()" onclick="goPortfolio()">Portfolio</button>
+    <button class="x" onmouseenter="hover()" onclick="openLink('https://x.com')">X</button>
 </div>
 
 </div>
 
-<!-- AUDIO -->
-<audio id="bg" src="FallinFriends.mp3" loop></audio>
-<audio id="hover" src="PopUp.wav"></audio>
-<audio id="click" src="Accept.wav"></audio>
-<audio id="confetti" src="Confeti.wav"></audio>
+<!-- 🔊 AUDIO SYSTEM LIMPIO -->
+<audio id="music" src="FallinFriends.mp3" loop></audio>
+<audio id="hoverS" src="PopUp.wav"></audio>
+<audio id="clickS" src="Accept.wav"></audio>
+<audio id="portfolioS" src="Confeti.wav"></audio>
 
 <script>
-const bg = document.getElementById("bg");
-const hoverS = document.getElementById("hover");
-const clickS = document.getElementById("click");
-const confS = document.getElementById("confetti");
+
+/* =========================
+   🔊 AUDIO MANAGER ÚNICO
+========================= */
+const music = document.getElementById("music");
+const hoverS = document.getElementById("hoverS");
+const clickS = document.getElementById("clickS");
+const portfolioS = document.getElementById("portfolioS");
 
 let started = false;
 
-function play(a){
-    a.currentTime = 0;
-    a.play().catch(()=>{});
-}
-
-/* 🔥 FIX REAL: música siempre arranca */
-function startMusic(){
+function startAudio(){
     if(!started){
-        bg.volume = 0.15;
-        bg.play().catch(()=>{});
+        music.volume = 0.12; // HOME
+        music.play().catch(()=>{});
         started = true;
     }
 }
 
-/* desbloqueo real */
-document.addEventListener("click", startMusic);
-document.addEventListener("mousemove", startMusic);
-document.addEventListener("keydown", startMusic);
+document.addEventListener("click", startAudio);
+document.addEventListener("mousemove", startAudio);
+document.addEventListener("keydown", startAudio);
 
+function play(s){
+    s.currentTime = 0;
+    s.play().catch(()=>{});
+}
+
+/* =========================
+   UI SOUND EVENTS
+========================= */
 function hover(){
-    startMusic();
+    startAudio();
     play(hoverS);
 }
 
-function go(url){
-    startMusic();
+function openLink(url){
+    startAudio();
     play(clickS);
     setTimeout(()=>window.open(url,"_blank"),150);
 }
 
-function openPortfolio(){
-    startMusic();
-    play(confS);
+function goPortfolio(){
+    startAudio();
+    play(portfolioS);
     setTimeout(()=>location.href="portfolio.html",700);
 }
+
 </script>
 
 </body>
