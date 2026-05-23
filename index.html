@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fuente Titan One -->
-<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+<!-- Fuentes -->
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Asap:wght@700&display=swap" rel="stylesheet">
 
 <title>El Pana Hot Dog</title>
 
@@ -20,14 +20,14 @@ body {
     font-family: 'Titan One', sans-serif;
     color: white;
 
-    /* Fondo degradado */
-    background: linear-gradient(to bottom, #ff6a00, #ff3cac);
+    /* 🔥 nuevo degradado */
+    background: linear-gradient(to bottom, #a056ff, #a098ff);
 
     overflow: hidden;
     position: relative;
 }
 
-/* Patrón S12_Pattern desde tu repo */
+/* Patrón S12_Pattern */
 body::before {
     content: "";
     position: absolute;
@@ -41,7 +41,6 @@ body::before {
     pointer-events: none;
 }
 
-/* Contenedor principal */
 .container {
     position: relative;
     z-index: 1;
@@ -66,7 +65,11 @@ button {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    font-family: 'Titan One', sans-serif;
+
+    /* 🔥 Asap Bold */
+    font-family: 'Asap', sans-serif;
+    font-weight: 700;
+
     font-size: 18px;
     transition: 0.2s;
 }
@@ -75,7 +78,7 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* Colores */
+/* colores */
 .github { background: #24292e; color: white; }
 .youtube { background: #ff0000; color: white; }
 .x { background: #000000; color: white; }
