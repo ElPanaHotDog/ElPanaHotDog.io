@@ -1,7 +1,7 @@
 {
-  "id": "Anti_Pirateria",
-  "title": "Anti Pirateria",
-  "message": "Hemos detectado que tu Fall Guys está modificado para jugarlo gratuitamente, esto no sigue nuetro eula\nTu cuenta ha sido baneada",
+  "id": "a",
+  "title": "Jelou",
+  "message": "Gud bai",
   "enabled": true,
   "popupType": "MT_OK_CANCEL"
 }
