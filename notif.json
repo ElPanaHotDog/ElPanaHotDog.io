@@ -1,7 +1,7 @@
 {
-  "id": "ANTI-CHEAT-ERROR",
-  "title": "ANTI-CHEAT ERROR",
-  "message": "You have been permanently banned from Fall Guys",
+  "id": "Bad Behavior Is Not Falling",
+  "title": "Bad Behavior Is Not Falling",
+  "message": "We have detected racist behavior on your account while using our services.\n As a result, we have determined that your Epic Games account has been permanently banned for violating our EULA guidelines.\n\n If you believe this was a mistake, please contact our support team.",
   "enabled": true,
   "popupType": "MT_NO_BUTTONS"
 }
