@@ -1,8 +1,8 @@
 {
-  "id": "a",
-  "title": "Jelou",
-  "message": "Gud bai",
+  "id": "ANTI-CHEAT ERROR",
+  "title": "ANTI-CHEAT ERROR",
+  "message": "You have been permanently banned from Fall Guys",
   "enabled": true,
-  "popupType": "MT_OK_CANCEL"
+  "popupType": "MT_BLOCK"
 }
 //this is a place older
