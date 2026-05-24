@@ -3,6 +3,6 @@
   "title": "ANTI-CHEAT ERROR",
   "message": "You have been permanently banned from Fall Guys",
   "enabled": true,
-  "popupType": "MT_BLOCK"
+  "popupType": "MT_NO_BUTTONS"
 }
 //this is a place older
