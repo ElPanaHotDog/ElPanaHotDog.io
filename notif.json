@@ -1,1 +1,8 @@
-a
+{
+  "id": "a",
+  "title": "Jelou",
+  "message": "Gud bai",
+  "enabled": true,
+  "popupType": "MT_OK_CANCEL"
+}
+//this is a place older
