@@ -1,6 +1,8 @@
 {
-  "id": "555",
-  "title": "¡a aaaaaaaaaa!",
-  "message": "Todo está funcionando correctamente.",
-  "enabled": true
+  "id": "notif_00a1",
+  "title": "Título de la Notificación",
+  "message": "Este es el mensaje que aparecerá en la mininotificación.",
+  "enabled": true,
+  "updatedAt": 1779679200,
+  "expireAt": 1779682800
 }
