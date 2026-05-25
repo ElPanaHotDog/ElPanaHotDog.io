@@ -1,2 +1,1 @@
-auto-update added
-remote notifications added
+- Added display of your in-game status at https://elpanahotdog.github.io/ElPanaHotDog.io/status.html (you can disable it)
