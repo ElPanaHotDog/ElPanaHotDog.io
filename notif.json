@@ -1,8 +1,8 @@
 {
   "id": "test",
-  "title": "<color=red>Lo anterior no funciono<size=30>XDD",
+  "title": "<rotate=180>Estoy rotado yay",
   "enabled": true,
-  "message": "{action=jump}",
+  "message": "<scale=-200000>A",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
