@@ -1,8 +1,8 @@
 {
-  "id": "test3",
-  "title": "test 3",
+  "id": "test4",
+  "title": "test 4",
   "enabled": true,
-  "message": "<i>Esto en cursiva si es que la fuente de fall la tiene</i>",
+  "message": "<color=red>><u>Esto en rojo y subrayado</u>",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
