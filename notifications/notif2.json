@@ -1,1 +1,9 @@
-aaaa
+{
+  "id": "native-001",
+  "enabled": true,
+  "title": "FreeCam",
+  "message": "Nueva notificación nativa!",
+  "duration": 5,
+  "updatedAt": 1779732000,
+  "expireAt": 0
+}
