@@ -1,8 +1,8 @@
 {
-  "id": "omaga",
-  "title": "When haces tus momos en Pop-ups modeados",
+  "id": "window",
+  "title": "<alpha=#50>Activar Windows</alpha>",
   "enabled": true,
-  "message": "el futuro es hoy, oiste viejo\nbut mt actualiza el anti cheats y te deja todo inservible\n Oh, mi lente de contacto",
+  "message": "<alpha=#50>Ve a Configuracion para activar Windows.</alpha>",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
