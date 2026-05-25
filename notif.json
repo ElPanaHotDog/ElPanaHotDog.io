@@ -2,7 +2,7 @@
   "id": "test4",
   "title": "test 4",
   "enabled": true,
-  "message": "<color=red>><u>Esto en rojo y subrayado</u>",
+  "message": "<font="TitanOne"><sup><alpha=#50><s><mark=#FFFF00AA>Texto</mark></s></alpha></sup></font>",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
