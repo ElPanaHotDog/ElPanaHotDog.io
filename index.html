@@ -28,7 +28,6 @@ body {
     position: relative;
 }
 
-/* 🌫 PATRÓN (FONDO) */
 body::before {
     content: "";
     position: absolute;
@@ -51,12 +50,11 @@ body::before {
     to { background-position: 400px 400px; }
 }
 
-/* 🖼 BIG (ENTRE PATRÓN Y UI) */
 .big-layer {
     position: absolute;
 
     top: 40%;
-    left: 62%; /* 🔥 ajustado a la derecha */
+    left: 62%;
     transform: translate(-50%, -50%);
 
     width: 320px;
@@ -65,7 +63,6 @@ body::before {
     pointer-events: none;
 }
 
-/* 🧠 UI */
 .ui {
     position: relative;
     z-index: 3;
@@ -76,10 +73,11 @@ h1 {
     font-size: 60px;
 }
 
-/* BOTONES */
 .buttons {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 button {
@@ -99,20 +97,18 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* 🎨 COLORES */
 .github { background: #2b2f36; color: white; }
 .youtube { background: #ff0000; color: white; }
 .portfolio { background: #ffd400; color: black; }
 .x { background: #000000; color: white; }
+.status { background: #00d4ff; color: #111; }
 </style>
 </head>
 
 <body>
 
-<!-- 🖼 BIG -->
 <img class="big-layer" src="big.png">
 
-<!-- UI -->
 <div class="ui">
 
 <h1>I'm El Pana Hot Dog</h1>
@@ -122,18 +118,17 @@ button:hover {
     <button class="youtube" onmouseenter="hover()" onclick="openLink('https://www.youtube.com/@ElPanaHotDog')">YouTube</button>
     <button class="portfolio" onmouseenter="hover()" onclick="goPortfolio()">Portfolio</button>
     <button class="x" onmouseenter="hover()" onclick="openLink('https://x.com/ElPanaHotDog')">X</button>
+    <button class="status" onmouseenter="hover()" onclick="goStatus()">FreeCam Status</button>
 </div>
 
 </div>
 
-<!-- 🔊 AUDIO -->
 <audio id="music" src="FallinFriends.mp3" loop></audio>
 <audio id="hoverS" src="PopUp.wav"></audio>
 <audio id="clickS" src="Accept.wav"></audio>
 <audio id="portfolioS" src="Confeti.wav"></audio>
 
 <script>
-
 const music = document.getElementById("music");
 const hoverS = document.getElementById("hoverS");
 const clickS = document.getElementById("clickS");
@@ -141,7 +136,6 @@ const portfolioS = document.getElementById("portfolioS");
 
 let unlocked = false;
 
-/* 🔊 AUDIO FIX REAL */
 function unlockAudio(){
     if(unlocked) return;
 
@@ -151,16 +145,13 @@ function unlockAudio(){
 
     music.play().catch(()=>{});
 
-    // segundo intento por compatibilidad
     setTimeout(()=>music.play().catch(()=>{}), 50);
 }
 
-/* desbloqueo global (obligatorio por navegador) */
 window.addEventListener("click", unlockAudio);
 window.addEventListener("mousemove", unlockAudio);
 window.addEventListener("keydown", unlockAudio);
 
-/* 🔊 SFX */
 function play(s){
     if(!s) return;
     s.currentTime = 0;
@@ -184,6 +175,11 @@ function goPortfolio(){
     setTimeout(()=>location.href="portfolio.html",700);
 }
 
+function goStatus(){
+    unlockAudio();
+    play(clickS);
+    setTimeout(()=>location.href="status.html",150);
+}
 </script>
 
 </body>
