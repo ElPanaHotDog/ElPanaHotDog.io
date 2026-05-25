@@ -1,7 +1,7 @@
 {
-  "id": "eee",
-  "title": "Jelou",
-  "message": "Gud bai",
+  "id": "Piracy",
+  "title": "Piracy Is No Falling",
+  "message": "It is a serious crime under copyright law to pirate Fall Guys\nExit the game and delete the software",
   "enabled": true,
-  "popupType": "MT_OK_CANCEL"
+  "popupType": "MT_BLOCKING"
 }
