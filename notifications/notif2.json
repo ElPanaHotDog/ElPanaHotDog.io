@@ -1,8 +1,8 @@
 {
-  "id": "native-001",
+  "id": "A",
   "enabled": true,
-  "title": "FreeCam",
-  "message": "Nueva notificación nativa!",
+  "title": "A",
+  "message": "A",
   "duration": 5,
   "updatedAt": 1779732000,
   "expireAt": 0
