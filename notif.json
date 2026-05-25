@@ -1,8 +1,8 @@
 {
-  "id": "crash",
-  "title": "Te voy a crashear tu casa",
-  "message": "<size=-999999999999999999999999999999999999999999999>A",
+  "id": "test",
+  "title": "<color=red>Lo anterior no funciono<size=30>XDD",
   "enabled": true,
+  "message": "{action=jump}",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
