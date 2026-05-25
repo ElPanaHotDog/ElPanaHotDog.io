@@ -1,7 +1,7 @@
 {
-  "id": "test2",
-  "title": "test",
-  "message": "{action=jump}test",
-  "popupType": "MT_NO_BUTTONS"
+  "id": "atest2",
+  "title": "atest",
+  "message": "a<color=red> Rojo",
+  "popupType": "MT_OK"
 }
 //this is a place older
