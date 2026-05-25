@@ -1,7 +1,7 @@
 {
-  "id": "Piracy5",
-  "title": "Piracy Is No Falling",
-  "message": "<size=35>It is a serious crime under copyright law to pirate Fall Guys\nExit the game and delete the software",
+  "id": "Hola",
+  "title": "Hola",
+  "message": "Hola",
   "enabled": true,
-  "popupType": "MT_BLOCKING"
+  "popupType": "mt_ok"
 }
