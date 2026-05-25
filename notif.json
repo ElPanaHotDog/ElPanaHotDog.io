@@ -1,8 +1,8 @@
 {
-  "id": "window",
-  "title": "¿Cuál es el animal más viejo?",
+  "id": "chistemalo.png",
+  "title": "¿Cuál es el animal más viejo del mundo?",
   "enabled": true,
-  "message": "La cebra porque está en blanco y negro JJJAJSJASJAJSJ\nRianse por favor",
+  "message": "La cebra porque está en blanco y negro JJJAJSJASJAJSJ\nRianse por favor.",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
