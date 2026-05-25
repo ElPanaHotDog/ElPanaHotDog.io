@@ -1,8 +1,8 @@
 {
-  "id": "tes3t",
-  "title": "<rotate=180>Estoy rotado yay",
+  "id": "test2",
+  "title": "test 2",
   "enabled": true,
-  "message": "<scale=-200000>A",
+  "message": "<b>Eesto debe estár en negrita</b>",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
