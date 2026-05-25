@@ -2,7 +2,7 @@
   "id": "test2",
   "title": "test 2",
   "enabled": true,
-  "message": "<b>Eesto debe estár en negrita</b>",
+  "message": "<i>Esto en cursiva si es que la fuente de fall la tiene</i>",
   "popupType": "MT_OK_CANCEL"
 }
 //this is a place older
