@@ -1,7 +1,7 @@
 {
-  "id": "HolaAAA",
+  "id": "HolaAaAA",
   "title": "AAAA",
   "message": "AAA",
   "enabled": true,
-  "popupType": "MT_WAIT_FOR_EVENT"
+  "popupType": "MT_NO_BUTTONS"
 }
