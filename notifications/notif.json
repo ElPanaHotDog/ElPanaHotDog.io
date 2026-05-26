@@ -1,7 +1,7 @@
 {
-  "id": "HolaAaAA",
+  "id": "HolaAaaAA",
   "title": "AAAA",
   "message": "AAA",
   "enabled": true,
-  "popupType": "MT_NO_BUTTONS"
+  "popupType": "MT_OK"
 }
