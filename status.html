@@ -148,35 +148,65 @@ button:hover {
 </div>
 
 <script>
-const STATUS_URL = "https://freecam-status.armadillocraftmc.workers.dev/status.txt";
+const SUPABASE_URL =
+    "https://efxhckhfjdzsxoiyeaja.supabase.co/rest/v1/players";
+
+const API_KEY =
+    "sb_publishable_tCwErLmpATHsqVCX1jsfqg_ZBYlWY-x";
 
 async function updateStatus() {
     const status = document.getElementById("status");
     const lastUpdate = document.getElementById("lastUpdate");
 
     try {
-        const res = await fetch(STATUS_URL + "?t=" + Date.now());
+        const res = await fetch(SUPABASE_URL, {
+            headers: {
+                "apikey": API_KEY,
+                "Authorization": "Bearer " + API_KEY
+            }
+        });
 
         if (!res.ok) {
             throw new Error("HTTP " + res.status);
         }
 
-        const text = await res.text();
+        const data = await res.json();
+
+        const nowUnix = Math.floor(Date.now() / 1000);
+
+        const activePlayers = data.filter(
+            p => nowUnix - (p.updatedat || 0) <= 30
+        );
+
+        if (activePlayers.length === 0) {
+            status.textContent = "No hay jugadores conectados";
+        } else {
+            status.textContent = activePlayers.map(p =>
+                `${p.playername || "Unknown"} | ${p.location || "unknown"} | ${p.category || "unknown"} | ${p.roundid || ""}`
+            ).join("\n");
+        }
 
         status.classList.remove("error");
-        status.textContent = text || "No hay jugadores conectados";
 
         const now = new Date();
-        lastUpdate.textContent = "Actualizado: " + now.toLocaleTimeString();
+        lastUpdate.textContent =
+            "Actualizado: " +
+            now.toLocaleTimeString();
+
     } catch (e) {
         status.classList.add("error");
-        status.textContent = "No se pudo cargar el estado.\nRevisa la URL del Worker o el binding KV.";
+        status.textContent =
+            "No se pudo cargar el estado desde Supabase.";
+
         lastUpdate.textContent = "Error";
+
+        console.error(e);
     }
 }
 
 updateStatus();
-setInterval(updateStatus, 2000);
+
+setInterval(updateStatus, 5000);
 </script>
 
 </body>
