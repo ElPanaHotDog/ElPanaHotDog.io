@@ -1,9 +1,9 @@
 {
-  "id": "Notification65",
+  "id": "1",
   "enabled": true,
-  "title": "Puto el que lo lea",
-  "message": "jaja, putito por seguir leyendo",
-  "duration": 5,
+  "title": "ATENCIÓN!",
+  "message": "Gracias por su atención.",
+  "duration": 20,
   "updatedAt": 1779732000,
   "expireAt": 0
 }
