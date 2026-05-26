@@ -1,9 +1,9 @@
 {
-  "id": "arboles",
+  "id": "Notification",
   "enabled": true,
-  "title": "Arboles",
-  "message": "Arboles",
-  "duration": 5,
+  "title": "Notification",
+  "message": "Fall Guys is a Death Game",
+  "duration": 500000000000,
   "updatedAt": 1779732000,
   "expireAt": 0
 }
