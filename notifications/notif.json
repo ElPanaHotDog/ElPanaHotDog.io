@@ -1,7 +1,7 @@
 {
-  "id": "Hola",
-  "title": "Hola",
-  "message": "Hola",
+  "id": "HolaAAA",
+  "title": "AAAA",
+  "message": "AAA",
   "enabled": true,
-  "popupType": "mt_ok"
+  "popupType": "MT_WAIT_FOR_EVENT"
 }
