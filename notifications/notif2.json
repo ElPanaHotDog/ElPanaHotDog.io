@@ -3,7 +3,7 @@
   "enabled": true,
   "title": "Notification",
   "message": "Fall Guys is a Death Game",
-  "duration": 500000000000,
+  "duration": 5,
   "updatedAt": 1779732000,
   "expireAt": 0
 }
