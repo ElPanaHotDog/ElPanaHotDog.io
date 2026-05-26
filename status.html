@@ -135,15 +135,15 @@ button:hover {
 <body>
 
 <div class="page">
-    <h1>FreeCam Status</h1>
+    <h1>Player Status</h1>
 
     <div class="topbar">
-        <button onclick="location.href='index.html'">Volver</button>
-        <div class="badge" id="lastUpdate">Actualizando...</div>
+        <button onclick="location.href='index.html'">Back</button>
+        <div class="badge" id="lastUpdate">Updating...</div>
     </div>
 
     <div class="status-box">
-        <pre id="status">Cargando jugadores...</pre>
+        <pre id="status">Loading players...</pre>
     </div>
 </div>
 
@@ -179,10 +179,10 @@ async function updateStatus() {
         );
 
         if (activePlayers.length === 0) {
-            status.textContent = "No hay jugadores conectados";
+            status.textContent = "No players are online";
         } else {
             status.textContent = activePlayers.map(p =>
-                `${p.playername || "Unknown"} | ${p.location || "unknown"} | ${p.category || "unknown"} | ${p.roundid || ""}`
+                `${p.playername || "Unknown"} | ${p.location || "unknown"} | ${p.category || "unknown"} | ${p.roundid || "unknown"}`
             ).join("\n");
         }
 
@@ -190,13 +190,13 @@ async function updateStatus() {
 
         const now = new Date();
         lastUpdate.textContent =
-            "Actualizado: " +
+            "Updated:" +
             now.toLocaleTimeString();
 
     } catch (e) {
         status.classList.add("error");
         status.textContent =
-            "No se pudo cargar el estado desde Supabase.";
+            "The status could not be loaded from Supabase.";
 
         lastUpdate.textContent = "Error";
 
