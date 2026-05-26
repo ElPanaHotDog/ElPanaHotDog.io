@@ -1,2 +1,3 @@
-- Added display of your in-game status at https://elpanahotdog.github.io/ElPanaHotDog.io/status.html (you can disable it)
-- The API for logging status was changed (this was added in a sub-update)
+- Added display of your in-game status at https://elpanahotdog.github.io/ElPanaHotDog.io/status.html (you can disable it)\n
+- The API for logging status was changed (this was added in a sub-update)\n
+- Fix the AutoUpdater (this was added in a sub-update)
