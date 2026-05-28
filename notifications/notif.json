@@ -1,7 +1,7 @@
 {
   "id": "67",
-  "title": "Ahora eres parte del 67",
+  "title": "Ya no formas parte del 67",
   "message": "67​",
   "enabled": true,
-  "popupType": "MT_BLOCKING"
+  "popupType": "MT_OK"
 }
