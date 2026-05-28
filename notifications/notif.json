@@ -1,7 +1,7 @@
 {
-  "id": "ba",
-  "title": "a",
-  "message": "a",
+  "id": "aaaaaaaaaaaaaaaaa",
+  "title": "La pirateria no te deja caer",
+  "message": "Piratear fall guys es algo que va en contra del copyright\n cierra el juego y desinstala el software",
   "enabled": true,
-  "popupType": "MT_OK"
+  "popupType": "MT_BLOCKING"
 }
