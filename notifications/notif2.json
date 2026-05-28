@@ -1,8 +1,8 @@
 {
-  "id": "2",
+  "id": "a",
   "enabled": true,
-  "title": "ATENCIÓN!",
-  "message": "Gracias por su atención.",
+  "title": "Atención!!",
+  "message": "Suscribete si ves esto",
   "duration": 20,
   "updatedAt": 1779732000,
   "expireAt": 0
