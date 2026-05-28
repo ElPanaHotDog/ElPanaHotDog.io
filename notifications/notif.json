@@ -1,7 +1,7 @@
 {
-  "id": "when",
-  "title": "When haces directos de un juego muerto",
-  "message": "el pasado es hoy, escuchaste viejo, aahh, mi lente de contacto",
+  "id": "a",
+  "title": "Callate putito",
+  "message": ".",
   "enabled": true,
   "popupType": "MT_OK"
 }
