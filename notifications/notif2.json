@@ -1,9 +1,9 @@
 {
-  "id": "baa",
+  "id": "aabaa",
   "enabled": true,
-  "title": "Papaleta dame la visa",
+  "title": "Si lees esto borra la cuenta",
   "message": ".",
-  "duration": 20,
+  "duration": 1,
   "updatedAt": 1779732000,
   "expireAt": 0
 }
