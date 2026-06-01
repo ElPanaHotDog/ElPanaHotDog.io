@@ -1,7 +1,7 @@
 {
-  "id": "Ban",
-  "title": "Anti-Cheat ERROR",
-  "message": "You have been permanently banned from Fall Guys",
+  "id": "aaaaaa",
+  "title": "a",
+  "message": "a",
   "enabled": true,
-  "popupType": "MT_BLOCKING"
+  "popupType": "MT_OK"
 }
