@@ -3,5 +3,6 @@
  "title": "title",
  "message": "desc",
  "enabled": true,
+ "popupType": "MT_OK",
  "image": "NONE"
 }
