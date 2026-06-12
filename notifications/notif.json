@@ -1,11 +1,7 @@
 {
-  fall guys/base
   "id": "id",
-  "title": "titlew",
+  "title": "title",
   "message": "desc",
   "enabled": true,
   "popupType": "MT_OK",
-  frog sqwad stuffs
-  "image": "NONE", 
-  "popupType": "INFO",
 }
