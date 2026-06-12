@@ -1,8 +1,8 @@
 {
- "id": "sest",
- "title": ".",
- "message": "SOY UNA RANA!!!!!!!",
+ "id": "a",
+ "title": "DELETE THE GAME",
+ "message": "Our anti-cheat system has detected cheats within your game.",
  "enabled": true,
  "popupType": "MT_OK",
- "image": "SLINGSHOT"
+ "image": "NONE"
 }
