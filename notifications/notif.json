@@ -3,6 +3,6 @@
   "title": "a",
   "message": "a",
   "enabled": true,
-  "popupType": "MT_OK"
+  "popupType": "MT_OK",
   "image": "NONE"
 }
