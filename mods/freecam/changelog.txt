@@ -5,3 +5,5 @@ Patch Update!
 - A welcome pop up has been added to the mod
 
 - Fall Guys will no longer crash if you don't have the mod files
+
+- Now the changelog pop up has a logic similar to the welcome pop up, blocking input from other things and keeping the loading screen
