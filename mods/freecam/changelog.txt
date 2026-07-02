@@ -1,5 +1,5 @@
 Patch Update!
 
-- If you use BettrFG in-game, your custom canvas will no longer be visible when you enter freecam mode.
+- If you use BettrFG in-game, the custom canvas will no longer be visible when you enter freecam mode
 
-- A welcome pop up has been added to the mod.
+- A welcome pop up has been added to the mod
