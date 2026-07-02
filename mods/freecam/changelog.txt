@@ -1,4 +1,5 @@
-- You can no longer enter ragdoll mode when diving on the freecam
+Patch Update!
 
-THE NEXT UPDATE
-Will Be Really Big!!
+- If you use BettrFG in-game, your custom canvas will no longer be visible when you enter freecam mode.
+
+- A welcome pop up has been added to the mod.
