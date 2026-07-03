@@ -1,9 +1,9 @@
 {
-  "id": "​​update",
+  "id": "​​test",
   "enabled": true,
-  "title": "​​Nueva Actualizacion!",
-  "message": "</size>Cuando vuelvas a abrir el juego el mod de freecam se actualizará!",
-  "duration": 30,
+  "title": "​​test",
+  "message": "</size>.",
+  "duration": 10,
   "updatedAt": 1779732000,
   "expireAt": 0
 }
