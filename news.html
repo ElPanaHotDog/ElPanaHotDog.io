@@ -10,33 +10,214 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Asap:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/news.css">
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:'Asap',sans-serif;
+    color:white;
+
+    cursor:url("cursor.png"),auto;
+
+    background:linear-gradient(
+        to bottom,
+        #7b4dff,
+        #9c91ff
+    );
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    position:relative;
+
+}
+
+/* Fondo */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:url("S12_Pattern.png");
+
+    background-size:200px;
+
+    background-repeat:repeat;
+
+    opacity:.15;
+
+    animation:moveBackground 20s linear infinite;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+@keyframes moveBackground{
+
+from{
+
+background-position:0 0;
+
+}
+
+to{
+
+background-position:400px 400px;
+
+}
+
+}
+
+/* Todo el contenido */
+
+.container{
+
+    position:relative;
+
+    z-index:5;
+
+    width:min(1300px,92%);
+
+    margin:auto;
+
+    padding-top:70px;
+
+    padding-bottom:80px;
+
+}
+
+/* Cabecera */
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.header h1{
+
+    margin:0;
+
+    font-family:'Titan One',cursive;
+
+    font-size:clamp(48px,7vw,88px);
+
+    color:#ff69cf;
+
+    -webkit-text-stroke:5px white;
+
+    paint-order:stroke fill;
+
+    letter-spacing:1px;
+
+}
+
+.header p{
+
+    max-width:760px;
+
+    margin:18px auto 0;
+
+    font-size:22px;
+
+    line-height:1.6;
+
+    font-weight:700;
+
+}
+
+/* Grid (las tarjetas las haremos después) */
+
+.news-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(320px,1fr));
+
+    gap:42px;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.news-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.header{
+
+margin-bottom:45px;
+
+}
+
+.header p{
+
+font-size:19px;
+
+}
+
+.container{
+
+width:94%;
+
+padding-top:50px;
+
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="background-pattern"></div>
-
 <main class="container">
 
-    <header class="header">
+<header class="header">
 
-        <h1>Noticias</h1>
+<h1>Noticias</h1>
 
-        <p>
-            Todos los acontecimientos más recientes de Fall Guys,
-            ¡contados por el mismísimo equipo de construcción
-            de la Cúpula del Tropiezo!
-        </p>
+<p>
 
-    </header>
+Todos los acontecimientos más recientes de Fall Guys,
+¡contados por el mismísimo equipo de construcción
+de la Cúpula del Tropiezo!
 
-    <section id="newsContainer" class="news-grid">
+</p>
 
-        <!-- news.js insertará aquí las noticias -->
+</header>
 
-    </section>
+<section
+id="newsContainer"
+class="news-grid">
+
+<!-- news.js añadirá aquí las noticias -->
+
+</section>
 
 </main>
 
@@ -46,5 +227,4 @@
 <script src="js/news.js"></script>
 
 </body>
-
 </html>
