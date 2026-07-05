@@ -57,7 +57,7 @@ async function loadNews() {
                 font-size:22px;
                 font-weight:bold;
             ">
-                No se pudieron cargar las noticias.
+                Failed to load news.
             </p>
         `;
 
