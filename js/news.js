@@ -14,8 +14,13 @@ async function loadNews() {
 
     try {
 
-        const response = await fetch("news/news.json");
-        const news = await response.json();
+const response = await fetch("news/news.json");
+
+const text = await response.text();
+console.log(text);
+
+// Solo para probar
+const news = JSON.parse(text);
 
         container.innerHTML = "";
 
