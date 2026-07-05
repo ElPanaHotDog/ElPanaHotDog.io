@@ -2,16 +2,16 @@
     {
         "title": "Test",
         "date": "test",
-        "image": "test.png"
+        "image": "assets/test.png"
     },
     {
         "title": "Test",
         "date": "test",
-        "image": "test.png"
+        "image": "assets/test.png"
     },
         {
         "title": "Test",
         "date": "test",
-        "image": "test.png"
+        "image": "assets/test.png"
     }
 ]
