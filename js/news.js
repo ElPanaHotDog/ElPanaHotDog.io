@@ -42,18 +42,6 @@ async function loadNews() {
                 play(hoverS);
             });
 
-            article.addEventListener("click", () => {
-
-                play(clickS);
-
-                setTimeout(() => {
-
-                    window.open(item.link, "_blank");
-
-                }, 120);
-
-            });
-
             container.appendChild(article);
 
         });
