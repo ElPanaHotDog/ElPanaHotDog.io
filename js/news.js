@@ -1,0 +1,80 @@
+const hoverS = document.getElementById("hoverS");
+const clickS = document.getElementById("clickS");
+
+function play(sound) {
+    if (!sound) return;
+
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+}
+
+async function loadNews() {
+
+    const container = document.getElementById("newsContainer");
+
+    try {
+
+        const response = await fetch("news/news.json");
+        const news = await response.json();
+
+        container.innerHTML = "";
+
+        news.forEach((item, index) => {
+
+            const article = document.createElement("article");
+            article.className = "news-card";
+
+            article.style.animationDelay = `${index * 120}ms`;
+
+            article.innerHTML = `
+                <img
+                    src="${item.image}"
+                    alt="${item.title}"
+                    loading="lazy"
+                >
+
+                <h2>${item.title}</h2>
+
+                <span>${item.date}</span>
+            `;
+
+            article.addEventListener("mouseenter", () => {
+                play(hoverS);
+            });
+
+            article.addEventListener("click", () => {
+
+                play(clickS);
+
+                setTimeout(() => {
+
+                    window.open(item.link, "_blank");
+
+                }, 120);
+
+            });
+
+            container.appendChild(article);
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        container.innerHTML = `
+            <p style="
+                grid-column:1/-1;
+                text-align:center;
+                font-size:22px;
+                font-weight:bold;
+            ">
+                No se pudieron cargar las noticias.
+            </p>
+        `;
+
+    }
+
+}
+
+loadNews();
