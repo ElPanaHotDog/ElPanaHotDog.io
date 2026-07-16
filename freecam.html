@@ -243,11 +243,59 @@ h1{
     transform:scale(1.02);
 
 }
+.hero{
 
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:70px;
+
+    margin-bottom:60px;
+
+}
+
+.hero-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.hero-render{
+
+    width:430px;
+
+    max-width:30vw;
+
+    pointer-events:none;
+
+    user-select:none;
+
+    filter:drop-shadow(0 20px 35px rgba(0,0,0,.35));
+
+}
 
 
 @media(max-width:700px){
+.hero{
 
+    flex-direction:column;
+
+}
+
+.hero-render{
+
+    display:none;
+
+}
 
     h1{
 
@@ -271,6 +319,10 @@ h1{
 
 
 <div class="content">
+
+    <div class="hero">
+
+        <div class="hero-left">
 
 
     <h1>Free Cam</h1>
@@ -336,7 +388,11 @@ h1{
     </div>
 
 
+</div>
 
+<img class="hero-render" src="Icon.png">
+
+</div>
 
 
     <div class="gallery">
