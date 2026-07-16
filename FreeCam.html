@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Asap:wght@700&display=swap" rel="stylesheet">
+
+<title>Free Cam</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    flex-direction:column;
+
+    font-family:'Asap',sans-serif;
+    color:white;
+
+    background:linear-gradient(to bottom,#a056ff,#a098ff);
+
+    cursor:url("cursor.png"),auto;
+    position:relative;
+
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background-image:url("S12_Pattern.png");
+    background-repeat:repeat;
+    background-size:200px;
+
+    opacity:.15;
+
+    animation:move 20s linear infinite;
+
+    pointer-events:none;
+    z-index:0;
+}
+
+@keyframes move{
+    from{background-position:0 0;}
+    to{background-position:400px 400px;}
+}
+
+.content{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:1100px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding:60px 20px 80px;
+}
+
+.logo{
+    width:420px;
+    max-width:90%;
+    margin-bottom:20px;
+}
+
+h1{
+    margin:0;
+
+    font-family:'Titan One',sans-serif;
+    font-size:78px;
+
+    color:white;
+
+    -webkit-text-stroke:5px #ff4fc6;
+    text-shadow:
+        0 0 10px rgba(255,79,198,.35);
+}
+
+.subtitle{
+    margin-top:10px;
+    margin-bottom:35px;
+
+    font-size:22px;
+    color:#ffffffdd;
+}
+
+.download{
+    padding:18px 45px;
+
+    border:none;
+    border-radius:16px;
+
+    background:#00d4ff;
+    color:#111;
+
+    font-family:'Asap',sans-serif;
+    font-size:24px;
+    font-weight:700;
+
+    cursor:url("cursor.png"),auto;
+
+    transition:.2s;
+}
+
+.download:hover{
+    transform:scale(1.08);
+}
+
+.gallery{
+    width:100%;
+    margin-top:60px;
+
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+}
+
+.gallery img{
+    width:100%;
+
+    border-radius:22px;
+
+    border:5px solid rgba(255,255,255,.25);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    transition:.25s;
+}
+
+.gallery img:hover{
+    transform:scale(1.02);
+}
+
+@media (max-width:700px){
+
+    h1{
+        font-size:54px;
+        -webkit-text-stroke:3px #ff4fc6;
+    }
+
+    .download{
+        font-size:20px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+    <!-- Opcional -->
+    <!-- <img class="logo" src="logo.png"> -->
+
+    <h1>Free Cam</h1>
+
+    <p class="subtitle">
+        Fly anywhere, take cinematic screenshots and explore maps freely.
+    </p>
+
+    <button class="download" onclick="downloadMod()">
+        Download
+    </button>
+
+    <div class="gallery">
+
+        <!-- Reemplaza estas imágenes -->
+        <img src="image1.png" alt="Screenshot 1">
+
+        <img src="image2.png" alt="Screenshot 2">
+
+        <img src="image3.png" alt="Screenshot 3">
+
+    </div>
+
+</div>
+
+<audio id="hoverS" src="PopUp.wav"></audio>
+<audio id="clickS" src="Accept.wav"></audio>
+
+<script>
+
+const hoverS=document.getElementById("hoverS");
+const clickS=document.getElementById("clickS");
+
+document.querySelector(".download").addEventListener("mouseenter",()=>{
+    hoverS.currentTime=0;
+    hoverS.play().catch(()=>{});
+});
+
+function downloadMod(){
+
+    clickS.currentTime=0;
+    clickS.play().catch(()=>{});
+
+    setTimeout(()=>{
+
+        window.location.href="https://release-assets.githubusercontent.com/github-production-release-asset/1302181842/46b600e8-e926-441b-8a9b-c15c230038d4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-07-16T02%3A55%3A57Z&rscd=attachment%3B+filename%3DFreeCam_V1.3.6.zip&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-07-16T01%3A55%3A04Z&ske=2026-07-16T02%3A55%3A57Z&sks=b&skv=2018-11-09&sig=Xqh84mIQ9%2Fyc4B8TGK%2F%2F2oK3XK7JeVie7GLqF7in%2Fuk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NDE2NzUxNSwibmJmIjoxNzg0MTY3MjE1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mLn4idp-zk63jSPQ2aftQZwcRVYsKElJL7fINDEf8yI&response-content-disposition=attachment%3B%20filename%3DFreeCam_V1.3.6.zip&response-content-type=application%2Foctet-stream";
+
+    },150);
+}
+
+</script>
+
+</body>
+</html>
