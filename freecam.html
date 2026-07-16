@@ -84,15 +84,14 @@ h1{
     color:white;
 
     text-shadow:
-        -4px -4px 0 #ff4fc6,
-         4px -4px 0 #ff4fc6,
-        -4px  4px 0 #ff4fc6,
-         4px  4px 0 #ff4fc6,
-         0px -4px 0 #ff4fc6,
-         0px  4px 0 #ff4fc6,
-        -4px  0px 0 #ff4fc6,
-         4px  0px 0 #ff4fc6,
-
+        -5px -5px 0 #ff4fc6,
+        -5px  0px 0 #ff4fc6,
+        -5px  5px 0 #ff4fc6,
+         0px -5px 0 #ff4fc6,
+         0px  5px 0 #ff4fc6,
+         5px -5px 0 #ff4fc6,
+         5px  0px 0 #ff4fc6,
+         5px  5px 0 #ff4fc6,
          0 0 20px rgba(255,79,198,.4);
 }
 
@@ -102,6 +101,13 @@ h1{
 
     font-size:22px;
     color:#ffffffdd;
+}
+
+.buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
 .download{
@@ -155,7 +161,6 @@ h1{
 
     h1{
         font-size:54px;
-        -webkit-text-stroke:3px #ff4fc6;
     }
 
     .download{
@@ -170,65 +175,37 @@ h1{
 
 <div class="content">
 
-    <!-- Opcional -->
     <!-- <img class="logo" src="logo.png"> -->
 
     <h1>Free Cam</h1>
 
     <p class="subtitle">
-        Explore maps and take High Quality Screenshots with this Mod!
+        Fly anywhere, take cinematic screenshots and explore maps freely.
     </p>
 
     <div class="buttons">
 
-    <button class="download"
+        <button class="download"
         onclick="window.location.href='https://release-assets.githubusercontent.com/github-production-release-asset/1302181842/46b600e8-e926-441b-8a9b-c15c230038d4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-07-16T02%3A55%3A57Z&rscd=attachment%3B+filename%3DFreeCam_V1.3.6.zip&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-07-16T01%3A55%3A04Z&ske=2026-07-16T02%3A55%3A57Z&sks=b&skv=2018-11-09&sig=Xqh84mIQ9%2Fyc4B8TGK%2F%2F2oK3XK7JeVie7GLqF7in%2Fuk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NDE2NzUxNSwibmJmIjoxNzg0MTY3MjE1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mLn4idp-zk63jSPQ2aftQZwcRVYsKElJL7fINDEf8yI&response-content-disposition=attachment%3B%20filename%3DFreeCam_V1.3.6.zip&response-content-type=application%2Foctet-stream'">
-        Download
-    </button>
+            Download
+        </button>
 
-    <button class="statusButton"
+        <button class="download"
         onclick="window.location.href='https://elpanahotdog.github.io/ElPanaHotDog.io/status'">
-        Player Status
-    </button>
+            Player Status
+        </button>
 
-</div>
+    </div>
 
     <div class="gallery">
 
-<img src="Image1.png">
-<img src="Image2.png">
-<img src="Image3.png">
+        <img src="image1.png" alt="Screenshot 1">
+        <img src="image2.png" alt="Screenshot 2">
+        <img src="image3.png" alt="Screenshot 3">
 
     </div>
 
 </div>
-
-<audio id="hoverS" src="PopUp.wav"></audio>
-<audio id="clickS" src="Accept.wav"></audio>
-
-<script>
-
-const hoverS=document.getElementById("hoverS");
-const clickS=document.getElementById("clickS");
-
-document.querySelector(".download").addEventListener("mouseenter",()=>{
-    hoverS.currentTime=0;
-    hoverS.play().catch(()=>{});
-});
-
-function downloadMod(){
-
-    clickS.currentTime=0;
-    clickS.play().catch(()=>{});
-
-    setTimeout(()=>{
-
-        window.location.href="https://release-assets.githubusercontent.com/github-production-release-asset/1302181842/46b600e8-e926-441b-8a9b-c15c230038d4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-07-16T02%3A55%3A57Z&rscd=attachment%3B+filename%3DFreeCam_V1.3.6.zip&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-07-16T01%3A55%3A04Z&ske=2026-07-16T02%3A55%3A57Z&sks=b&skv=2018-11-09&sig=Xqh84mIQ9%2Fyc4B8TGK%2F%2F2oK3XK7JeVie7GLqF7in%2Fuk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NDE2NzUxNSwibmJmIjoxNzg0MTY3MjE1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mLn4idp-zk63jSPQ2aftQZwcRVYsKElJL7fINDEf8yI&response-content-disposition=attachment%3B%20filename%3DFreeCam_V1.3.6.zip&response-content-type=application%2Foctet-stream";
-
-    },150);
-}
-
-</script>
 
 </body>
 </html>
