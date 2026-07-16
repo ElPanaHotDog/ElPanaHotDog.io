@@ -55,6 +55,9 @@ body::before{
     to{background-position:400px 400px;}
 }
 
+    <audio id="hoverS" src="PopUp.wav"></audio>
+<audio id="clickS" src="Accept.wav"></audio>
+    
 .content{
     position:relative;
     z-index:2;
@@ -185,24 +188,26 @@ h1{
 
     <div class="buttons">
 
-        <button class="download"
-        onclick="window.location.href='https://release-assets.githubusercontent.com/github-production-release-asset/1302181842/46b600e8-e926-441b-8a9b-c15c230038d4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-07-16T02%3A55%3A57Z&rscd=attachment%3B+filename%3DFreeCam_V1.3.6.zip&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-07-16T01%3A55%3A04Z&ske=2026-07-16T02%3A55%3A57Z&sks=b&skv=2018-11-09&sig=Xqh84mIQ9%2Fyc4B8TGK%2F%2F2oK3XK7JeVie7GLqF7in%2Fuk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NDE2NzUxNSwibmJmIjoxNzg0MTY3MjE1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mLn4idp-zk63jSPQ2aftQZwcRVYsKElJL7fINDEf8yI&response-content-disposition=attachment%3B%20filename%3DFreeCam_V1.3.6.zip&response-content-type=application%2Foctet-stream'">
-            Download
-        </button>
+    <button class="download"
+        onmouseenter="document.getElementById('hoverS').currentTime=0;document.getElementById('hoverS').play().catch(()=>{})"
+        onclick="document.getElementById('clickS').currentTime=0;document.getElementById('clickS').play().catch(()=>{});setTimeout(()=>window.location.href='https://release-assets.githubusercontent.com/github-production-release-asset/1302181842/46b600e8-e926-441b-8a9b-c15c230038d4?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-07-16T02%3A55%3A57Z&rscd=attachment%3B+filename%3DFreeCam_V1.3.6.zip&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-07-16T01%3A55%3A04Z&ske=2026-07-16T02%3A55%3A57Z&sks=b&skv=2018-11-09&sig=Xqh84mIQ9%2Fyc4B8TGK%2F%2F2oK3XK7JeVie7GLqF7in%2Fuk%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NDE2NzUxNSwibmJmIjoxNzg0MTY3MjE1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mLn4idp-zk63jSPQ2aftQZwcRVYsKElJL7fINDEf8yI&response-content-disposition=attachment%3B%20filename%3DFreeCam_V1.3.6.zip&response-content-type=application%2Foctet-stream',150)">
+        Download
+    </button>
 
-        <button class="download"
-        onclick="window.location.href='https://elpanahotdog.github.io/ElPanaHotDog.io/status'">
-            Player Status
-        </button>
+    <button class="download"
+        onmouseenter="document.getElementById('hoverS').currentTime=0;document.getElementById('hoverS').play().catch(()=>{})"
+        onclick="document.getElementById('clickS').currentTime=0;document.getElementById('clickS').play().catch(()=>{});setTimeout(()=>window.location.href='https://elpanahotdog.github.io/ElPanaHotDog.io/status',150)">
+        Player Status
+    </button>
 
-    </div>
+</div>
 
     <div class="gallery">
 
-        <img src="image1.png" alt="Screenshot 1">
-        <img src="image2.png" alt="Screenshot 2">
-        <img src="image3.png" alt="Screenshot 3">
-
+    <img src="image1.png">
+    <img src="image2.png">
+    <img src="image3.png">
+        
     </div>
 
 </div>
