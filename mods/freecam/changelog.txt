@@ -1,9 +1,7 @@
 <b>Patch Update!</b>
 
-- If you use BettrFG in-game, the custom canvas will no longer be visible when you enter freecam mode
+- Fixed the level rating popup (like/dislike) appearing after returning to the game if it was minimized during a Creative round after qualifying or being eliminated while using Free Cam
 
-- A welcome pop up has been added to the mod
+- The fall feed is disabled when entering the free cam now
 
-- Fall Guys will no longer crash if you don't have the mod files
-
-- Now the changelog pop up has a logic similar to the welcome pop up, blocking input from other things and keeping the loading screen
+- Work is underway on gamepad support for Free Cam
