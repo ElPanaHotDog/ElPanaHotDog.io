@@ -1,7 +1,3 @@
 <b>Patch Update!</b>
 
-- Fixed the level rating popup (like/dislike) appearing after returning to the game if it was minimized during a Creative round after qualifying or being eliminated while using Free Cam
-
-- The fall feed is disabled when entering the free cam now
-
-- Work is underway on gamepad support for Free Cam
+- A bug related to a never-completed feature has been removed
