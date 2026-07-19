@@ -18,8 +18,8 @@
       "id": "4",
       "name": "CepCe",
       "downloadURL": "https://github.com/owyn/CreativeExpansionPack/releases/download/50/CreativeExpansionPack_Community_Edition_50.zip",
-      "installMode": "RootFolder",
-      "folderName": ""
+      "installMode": "SearchFolderName",
+      "folderName": "CreativeExpansionPack"
     }
   ]
 }
