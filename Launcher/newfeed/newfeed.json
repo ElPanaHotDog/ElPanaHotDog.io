@@ -1,1 +1,14 @@
-
+{
+  "newsfeed": [
+    {
+      "id": "1",
+      "title": "Welcome Betatesters",
+      "description": "Welcome to Fall Guys Launcher!"
+    },
+    {
+      "id": "2",
+      "title": "The first Closed Beta has arrived",
+      "description": "Part One of Launcher Development is complete"
+    }
+  ]
+}
