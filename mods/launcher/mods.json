@@ -13,6 +13,13 @@
       "downloadURL": "https://github.com/oreytv/bettrfg/releases/download/v1.2.3/bettrfg_plugin.zip",
       "installMode": "RootFolder",
       "folderName": ""
+    },
+    {
+      "id": "4",
+      "name": "CepCe",
+      "downloadURL": "https://github.com/owyn/CreativeExpansionPack/releases/download/50/CreativeExpansionPack_Community_Edition_50.zip",
+      "installMode": "RootFolder",
+      "folderName": ""
     }
   ]
 }
