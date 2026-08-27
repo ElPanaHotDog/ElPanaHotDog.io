@@ -3,3 +3,7 @@
 - A function was added to lock the camera and reactivate player input (used with <b>H</b>)
 
 - The Fall Feed has been reactivated since hackers can no longer crash the game!
+
+<b>Patch Update!</b>
+
+- The mod now has controller support!
