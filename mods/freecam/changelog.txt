@@ -1,3 +1,5 @@
-<b>Patch Update!</b>
+<b>New Update!</b>
 
-- Anti Crash <color=red>(hackers with giant names)
+- A function was added to lock the camera and reactivate player input (used with <b>H</b>)
+
+- The Fall Feed has been reactivated since hackers can no longer crash the game!
