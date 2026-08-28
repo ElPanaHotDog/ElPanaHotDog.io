@@ -1,5 +1,3 @@
 <b>Patch Update!</b>
 
-- Fixed the camera rotation on the Y-axis
-
-- Fixed a bug that occurs if you enter Freecam and respawn, which leaves you with zero gravity
+- Fixed freecam bug when using keyboard controls without a controller connected
