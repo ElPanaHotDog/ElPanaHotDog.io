@@ -1,3 +1,3 @@
-<b>Patch Update!</b>
-
-- Fixed freecam bug when using keyboard controls without a controller connected
+- Configuring Free Cam is now easier
+- The UI deactivation system is now better optimized
+- The mod can no longer be considered a hack (Before, whenever you entered freecam, you had no gravity, now, if there are other players in the match, you will retain gravity)
