@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <title>NO DEBISTE ABRIRLO</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          #241010 0%,
+          #0b0707 48%,
+          #020202 100%
+        );
+      color: #dedede;
+      font-family: "Courier New", monospace;
+    }
+
+    main {
+      width: min(720px, 100%);
+      padding: clamp(24px, 6vw, 52px);
+      border: 1px solid #5b2525;
+      background: rgba(5, 5, 5, .92);
+      box-shadow:
+        0 0 50px #6d111122,
+        inset 0 0 35px #390b0b22;
+    }
+
+    .warning {
+      color: #b52d2d;
+      letter-spacing: .22em;
+      font-size: .78rem;
+    }
+
+    h1 {
+      color: #d7d0d0;
+      font-size: clamp(1.5rem, 5vw, 2.35rem);
+      margin: 18px 0 28px;
+    }
+
+    p {
+      line-height: 1.7;
+      color: #aaa;
+    }
+
+    .riddle {
+      margin: 30px 0;
+      padding: 22px;
+      border-left: 2px solid #9e2929;
+      background: #160d0d;
+      color: #eee;
+      line-height: 1.9;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #b9a9a9;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #633131;
+      background: #080606;
+      color: #eee;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #c34a4a;
+      box-shadow: 0 0 0 2px #8e242433;
+    }
+
+    button {
+      margin-top: 14px;
+      padding: 13px 20px;
+      border: 1px solid #9b3838;
+      background: #651919;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    button:hover {
+      background: #842323;
+    }
+
+    button:disabled {
+      opacity: .5;
+      cursor: default;
+    }
+
+    #result {
+      min-height: 2em;
+      margin-top: 22px;
+      color: #c44b4b;
+    }
+
+    .tiny {
+      margin-top: 36px;
+      color: #514848;
+      font-size: .72rem;
+      letter-spacing: .08em;
+    }
+
+    /* POPUP PERSONALIZADO */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .82);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-backdrop.show {
+      display: grid;
+    }
+
+    .modal {
+      width: min(460px, 100%);
+      padding: 30px;
+      text-align: center;
+      border: 1px solid #8d3434;
+      background: #090606;
+      box-shadow:
+        0 0 55px #a51f1f44,
+        inset 0 0 30px #4a101022;
+      animation: appear .35s ease-out;
+    }
+
+    .modal h2 {
+      margin: 18px 0 16px;
+      color: #d9d0d0;
+      font-size: 1.5rem;
+      letter-spacing: .08em;
+    }
+
+    .modal p {
+      margin: 0;
+      color: #bdb0b0;
+    }
+
+    .modal button {
+      margin-top: 24px;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .flicker {
+      animation: flicker 5s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 96%, 98%, 100% {
+        opacity: 1;
+      }
+      97% {
+        opacity: .45;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <div class="warning flicker">
+      MENSAJE RECIBIDO // 03:17:09
+    </div>
+
+    <h1>NO DEBISTE ABRIRLO.</h1>
+
+    <p>
+      Resuelve el siguiente acertijo:
+    </p>
+
+    <p class="riddle">
+      No tengo voz, pero marco el paso de cada segundo.<br>
+      Tengo dos manos y una cara, aunque nunca puedo tocarte.<br>
+      Si llego a doce, no termina mi existencia: vuelvo a comenzar.<br><br>
+
+      <strong>¿Qué soy?</strong>
+    </p>
+
+    <label for="answer">
+      ESCRIBE TU RESPUESTA:
+    </label>
+
+    <form id="form">
+      <input
+        id="answer"
+        name="answer"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="..."
+        required
+      >
+
+      <button type="submit">
+        ENVIAR RESPUESTA
+      </button>
+    </form>
+
+    <div id="result" role="status" aria-live="polite"></div>
+
+    <div class="tiny">
+      NO CIERRES ESTA PÁGINA.
+    </div>
+  </main>
+
+
+  <!-- POPUP DE VICTORIA -->
+
+  <div
+    class="modal-backdrop"
+    id="successModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <div class="modal">
+
+      <div class="warning">
+        TRANSMISIÓN RESTABLECIDA
+      </div>
+
+      <h2 id="modalTitle">
+        TE HAS SALVADO.
+      </h2>
+
+      <p>
+        Puedes continuar con tu stream.
+      </p>
+
+      <button id="closeModal" type="button">
+        CONTINUAR
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const form = document.getElementById('form');
+    const answer = document.getElementById('answer');
+    const result = document.getElementById('result');
+
+    const modal = document.getElementById('successModal');
+    const closeModal = document.getElementById('closeModal');
+
+    form.addEventListener('submit', (event) => {
+
+      event.preventDefault();
+
+      const value = answer.value
+        .trim()
+        .toLocaleLowerCase('es')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+
+      if (
+        ['reloj', 'un reloj', 'el reloj'].includes(value)
+      ) {
+
+        result.textContent = 'RESPUESTA CORRECTA.';
+        result.style.color = '#b7b7b7';
+
+        // Desactivar el formulario
+        answer.disabled = true;
+        form.querySelector('button').disabled = true;
+
+        // Mostrar popup personalizado
+        modal.classList.add('show');
+
+        closeModal.focus();
+
+      } else {
+
+        result.textContent =
+          'RESPUESTA INCORRECTA. INTÉNTALO OTRA VEZ.';
+
+        result.style.color = '#c44b4b';
+
+      }
+
+    });
+
+
+    // Cerrar popup
+    closeModal.addEventListener('click', () => {
+
+      modal.classList.remove('show');
+
+    });
+
+  </script>
+
+</body>
+</html>
