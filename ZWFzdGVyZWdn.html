@@ -82,6 +82,30 @@
             margin-top: 30px;
         }
 
+        /* Pantalla de inicio */
+
+        #inicio {
+            position: fixed;
+            inset: 0;
+            background: #080505;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #inicio h2 {
+            color: #aaa;
+        }
+
+        #inicio p {
+            color: #777;
+        }
+
         /* Popup */
 
         #popup {
@@ -92,6 +116,8 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            z-index: 30;
+            box-sizing: border-box;
         }
 
         #popup.contenido {
@@ -129,6 +155,17 @@
 
 <body>
 
+    <!-- Pantalla inicial -->
+
+    <div id="inicio">
+        <h2>ANTES DE CONTINUAR...</h2>
+        <p>Debes aceptar la transmisión.</p>
+        <button id="comenzar">COMENZAR</button>
+    </div>
+
+
+    <!-- Contenido principal -->
+
     <main>
         <h1>NO DEBISTE ABRIRLO.</h1>
 
@@ -164,6 +201,7 @@
         </div>
     </main>
 
+
     <!-- Popup de victoria -->
 
     <div id="popup">
@@ -176,32 +214,86 @@
         </div>
     </div>
 
+
     <script>
+
         const formulario = document.getElementById("formulario");
         const respuesta = document.getElementById("respuesta");
         const resultado = document.getElementById("resultado");
         const popup = document.getElementById("popup");
+        const inicio = document.getElementById("inicio");
+
+        let resuelto = false;
+
+
+        // Activar pantalla completa
+
+        document.getElementById("comenzar").addEventListener("click", async function() {
+
+            try {
+                await document.documentElement.requestFullscreen();
+            } catch (e) {
+                console.log("No se pudo activar pantalla completa.");
+            }
+
+            inicio.style.display = "none";
+
+        });
+
+
+        // Detectar cuando sale de pantalla completa
+
+        document.addEventListener("fullscreenchange", function() {
+
+            if (!document.fullscreenElement && !resuelto) {
+                inicio.style.display = "flex";
+            }
+
+        });
+
+
+        // Comprobar respuesta
 
         formulario.addEventListener("submit", function(e) {
+
             e.preventDefault();
 
-            let texto = respuesta.value.trim().toLowerCase();
+            let texto = respuesta.value
+                .trim()
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
 
             if (["reloj", "un reloj", "el reloj"].includes(texto)) {
+
                 resultado.textContent = "RESPUESTA CORRECTA.";
 
                 respuesta.disabled = true;
                 formulario.querySelector("button").disabled = true;
 
+                // Desbloquear salida de pantalla completa
+                resuelto = true;
+
+                // Mostrar popup
                 popup.classList.add("contenido");
+
             } else {
+
                 resultado.textContent = "RESPUESTA INCORRECTA. INTÉNTALO OTRA VEZ.";
+
             }
+
         });
 
+
+        // Cerrar popup
+
         document.getElementById("continuar").addEventListener("click", function() {
+
             popup.classList.remove("contenido");
+
         });
+
     </script>
 
 </body>
