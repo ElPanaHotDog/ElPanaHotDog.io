@@ -2,335 +2,207 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#050505">
-  <title>NO DEBISTE ABRIRLO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NO DEBISTE ABRIRLO</title>
 
-  <style>
-    :root {
-      color-scheme: dark;
-    }
+    <style>
+        body {
+            background: #080505;
+            color: #ddd;
+            font-family: "Courier New", monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        main {
+            background: #100a0a;
+            border: 1px solid #572222;
+            padding: 35px;
+            max-width: 600px;
+            width: 100%;
+        }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background:
-        radial-gradient(
-          ellipse at center,
-          #241010 0%,
-          #0b0707 48%,
-          #020202 100%
-        );
-      color: #dedede;
-      font-family: "Courier New", monospace;
-    }
+        h1 {
+            color: #ccc;
+            font-size: 28px;
+        }
 
-    main {
-      width: min(720px, 100%);
-      padding: clamp(24px, 6vw, 52px);
-      border: 1px solid #5b2525;
-      background: rgba(5, 5, 5, .92);
-      box-shadow:
-        0 0 50px #6d111122,
-        inset 0 0 35px #390b0b22;
-    }
+        p {
+            color: #aaa;
+            line-height: 1.6;
+        }
 
-    .warning {
-      color: #b52d2d;
-      letter-spacing: .22em;
-      font-size: .78rem;
-    }
+        .acertijo {
+            background: #1b1010;
+            border-left: 3px solid #8b2929;
+            padding: 20px;
+            line-height: 1.8;
+            color: white;
+            margin: 25px 0;
+        }
 
-    h1 {
-      color: #d7d0d0;
-      font-size: clamp(1.5rem, 5vw, 2.35rem);
-      margin: 18px 0 28px;
-    }
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #080505;
+            border: 1px solid #633131;
+            color: white;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
 
-    p {
-      line-height: 1.7;
-      color: #aaa;
-    }
+        button {
+            background: #6b2020;
+            border: 1px solid #963838;
+            color: white;
+            padding: 12px 20px;
+            margin-top: 12px;
+            cursor: pointer;
+            font-family: inherit;
+        }
 
-    .riddle {
-      margin: 30px 0;
-      padding: 22px;
-      border-left: 2px solid #9e2929;
-      background: #160d0d;
-      color: #eee;
-      line-height: 1.9;
-    }
+        button:hover {
+            background: #922c2c;
+        }
 
-    label {
-      display: block;
-      margin-bottom: 10px;
-      color: #b9a9a9;
-    }
+        #resultado {
+            margin-top: 20px;
+            color: #c44b4b;
+        }
 
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #633131;
-      background: #080606;
-      color: #eee;
-      font: inherit;
-      outline: none;
-    }
+        .pie {
+            color: #555;
+            font-size: 12px;
+            margin-top: 30px;
+        }
 
-    input:focus {
-      border-color: #c34a4a;
-      box-shadow: 0 0 0 2px #8e242433;
-    }
+        /* Popup */
 
-    button {
-      margin-top: 14px;
-      padding: 13px 20px;
-      border: 1px solid #9b3838;
-      background: #651919;
-      color: white;
-      font: inherit;
-      cursor: pointer;
-      transition: background .2s;
-    }
+        #popup {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-    button:hover {
-      background: #842323;
-    }
+        #popup.contenido {
+            display: flex;
+        }
 
-    button:disabled {
-      opacity: .5;
-      cursor: default;
-    }
+        .ventana {
+            background: #100a0a;
+            border: 1px solid #963838;
+            padding: 35px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
 
-    #result {
-      min-height: 2em;
-      margin-top: 22px;
-      color: #c44b4b;
-    }
+        .ventana h2 {
+            color: #ddd;
+        }
 
-    .tiny {
-      margin-top: 36px;
-      color: #514848;
-      font-size: .72rem;
-      letter-spacing: .08em;
-    }
+        .ventana p {
+            color: #aaa;
+        }
 
-    /* POPUP PERSONALIZADO */
+        @media (max-width: 500px) {
+            main {
+                padding: 22px;
+            }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 10;
-      display: none;
-      place-items: center;
-      padding: 24px;
-      background: rgba(0, 0, 0, .82);
-      backdrop-filter: blur(5px);
-    }
-
-    .modal-backdrop.show {
-      display: grid;
-    }
-
-    .modal {
-      width: min(460px, 100%);
-      padding: 30px;
-      text-align: center;
-      border: 1px solid #8d3434;
-      background: #090606;
-      box-shadow:
-        0 0 55px #a51f1f44,
-        inset 0 0 30px #4a101022;
-      animation: appear .35s ease-out;
-    }
-
-    .modal h2 {
-      margin: 18px 0 16px;
-      color: #d9d0d0;
-      font-size: 1.5rem;
-      letter-spacing: .08em;
-    }
-
-    .modal p {
-      margin: 0;
-      color: #bdb0b0;
-    }
-
-    .modal button {
-      margin-top: 24px;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: scale(.92);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .flicker {
-      animation: flicker 5s infinite;
-    }
-
-    @keyframes flicker {
-      0%, 96%, 98%, 100% {
-        opacity: 1;
-      }
-      97% {
-        opacity: .45;
-      }
-    }
-  </style>
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <main>
-    <div class="warning flicker">
-      MENSAJE RECIBIDO // 03:17:09
+    <main>
+        <h1>NO DEBISTE ABRIRLO.</h1>
+
+        <p>Resuelve el siguiente acertijo:</p>
+
+        <div class="acertijo">
+            No tengo voz, pero marco el paso de cada segundo.<br>
+            Tengo dos manos y una cara, aunque nunca puedo tocarte.<br>
+            Si llego a doce, no termina mi existencia: vuelvo a comenzar.
+            <br><br>
+            <strong>¿Qué soy?</strong>
+        </div>
+
+        <form id="formulario">
+            <label for="respuesta">ESCRIBE TU RESPUESTA:</label>
+            <br><br>
+
+            <input
+                type="text"
+                id="respuesta"
+                placeholder="..."
+                autocomplete="off"
+                required
+            >
+
+            <button type="submit">ENVIAR RESPUESTA</button>
+        </form>
+
+        <div id="resultado"></div>
+
+        <div class="pie">
+            NO CIERRES ESTA PÁGINA.
+        </div>
+    </main>
+
+    <!-- Popup de victoria -->
+
+    <div id="popup">
+        <div class="ventana">
+            <h2>TE HAS SALVADO.</h2>
+
+            <p>Puedes continuar con tu stream.</p>
+
+            <button id="continuar">CONTINUAR</button>
+        </div>
     </div>
 
-    <h1>NO DEBISTE ABRIRLO.</h1>
+    <script>
+        const formulario = document.getElementById("formulario");
+        const respuesta = document.getElementById("respuesta");
+        const resultado = document.getElementById("resultado");
+        const popup = document.getElementById("popup");
 
-    <p>
-      Resuelve el siguiente acertijo:
-    </p>
+        formulario.addEventListener("submit", function(e) {
+            e.preventDefault();
 
-    <p class="riddle">
-      No tengo voz, pero marco el paso de cada segundo.<br>
-      Tengo dos manos y una cara, aunque nunca puedo tocarte.<br>
-      Si llego a doce, no termina mi existencia: vuelvo a comenzar.<br><br>
+            let texto = respuesta.value.trim().toLowerCase();
 
-      <strong>¿Qué soy?</strong>
-    </p>
+            if (["reloj", "un reloj", "el reloj"].includes(texto)) {
+                resultado.textContent = "RESPUESTA CORRECTA.";
 
-    <label for="answer">
-      ESCRIBE TU RESPUESTA:
-    </label>
+                respuesta.disabled = true;
+                formulario.querySelector("button").disabled = true;
 
-    <form id="form">
-      <input
-        id="answer"
-        name="answer"
-        type="text"
-        autocomplete="off"
-        spellcheck="false"
-        placeholder="..."
-        required
-      >
+                popup.classList.add("contenido");
+            } else {
+                resultado.textContent = "RESPUESTA INCORRECTA. INTÉNTALO OTRA VEZ.";
+            }
+        });
 
-      <button type="submit">
-        ENVIAR RESPUESTA
-      </button>
-    </form>
-
-    <div id="result" role="status" aria-live="polite"></div>
-
-    <div class="tiny">
-      NO CIERRES ESTA PÁGINA.
-    </div>
-  </main>
-
-
-  <!-- POPUP DE VICTORIA -->
-
-  <div
-    class="modal-backdrop"
-    id="successModal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modalTitle"
-  >
-
-    <div class="modal">
-
-      <div class="warning">
-        TRANSMISIÓN RESTABLECIDA
-      </div>
-
-      <h2 id="modalTitle">
-        TE HAS SALVADO.
-      </h2>
-
-      <p>
-        Puedes continuar con tu stream.
-      </p>
-
-      <button id="closeModal" type="button">
-        CONTINUAR
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <script>
-
-    const form = document.getElementById('form');
-    const answer = document.getElementById('answer');
-    const result = document.getElementById('result');
-
-    const modal = document.getElementById('successModal');
-    const closeModal = document.getElementById('closeModal');
-
-    form.addEventListener('submit', (event) => {
-
-      event.preventDefault();
-
-      const value = answer.value
-        .trim()
-        .toLocaleLowerCase('es')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
-
-      if (
-        ['reloj', 'un reloj', 'el reloj'].includes(value)
-      ) {
-
-        result.textContent = 'RESPUESTA CORRECTA.';
-        result.style.color = '#b7b7b7';
-
-        // Desactivar el formulario
-        answer.disabled = true;
-        form.querySelector('button').disabled = true;
-
-        // Mostrar popup personalizado
-        modal.classList.add('show');
-
-        closeModal.focus();
-
-      } else {
-
-        result.textContent =
-          'RESPUESTA INCORRECTA. INTÉNTALO OTRA VEZ.';
-
-        result.style.color = '#c44b4b';
-
-      }
-
-    });
-
-
-    // Cerrar popup
-    closeModal.addEventListener('click', () => {
-
-      modal.classList.remove('show');
-
-    });
-
-  </script>
+        document.getElementById("continuar").addEventListener("click", function() {
+            popup.classList.remove("contenido");
+        });
+    </script>
 
 </body>
 </html>
