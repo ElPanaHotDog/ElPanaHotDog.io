@@ -2,294 +2,245 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acertijo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acertijo</title>
 
-    <style>
-        body {
-            background: #080505;
-            color: #ddd;
-            font-family: "Courier New", monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+<style>
+body {
+    background: #080505;
+    color: #ddd;
+    font-family: "Courier New", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-        main {
-            background: #100a0a;
-            border: 1px solid #572222;
-            padding: 35px;
-            max-width: 600px;
-            width: 100%;
-        }
+main {
+    background: #100a0a;
+    border: 1px solid #572222;
+    padding: 35px;
+    max-width: 600px;
+    width: 100%;
+}
 
-        h1 {
-            color: #ccc;
-            font-size: 28px;
-        }
+p {
+    color: #aaa;
+    line-height: 1.6;
+}
 
-        p {
-            color: #aaa;
-            line-height: 1.6;
-        }
+.acertijo {
+    background: #1b1010;
+    border-left: 3px solid #8b2929;
+    padding: 20px;
+    line-height: 1.8;
+    color: white;
+    margin: 25px 0;
+}
 
-        .acertijo {
-            background: #1b1010;
-            border-left: 3px solid #8b2929;
-            padding: 20px;
-            line-height: 1.8;
-            color: white;
-            margin: 25px 0;
-        }
+input {
+    width: 100%;
+    padding: 12px;
+    background: #080505;
+    border: 1px solid #633131;
+    color: white;
+    font-family: inherit;
+    box-sizing: border-box;
+}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            background: #080505;
-            border: 1px solid #633131;
-            color: white;
-            font-family: inherit;
-            box-sizing: border-box;
-        }
+button {
+    background: #6b2020;
+    border: 1px solid #963838;
+    color: white;
+    padding: 12px 20px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-family: inherit;
+}
 
-        button {
-            background: #6b2020;
-            border: 1px solid #963838;
-            color: white;
-            padding: 12px 20px;
-            margin-top: 12px;
-            cursor: pointer;
-            font-family: inherit;
-        }
+button:hover {
+    background: #922c2c;
+}
 
-        button:hover {
-            background: #922c2c;
-        }
+button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
 
-        #resultado {
-            margin-top: 20px;
-            color: #c44b4b;
-        }
+#resultado {
+    margin-top: 20px;
+    color: #c44b4b;
+}
 
-        .pie {
-            color: #555;
-            font-size: 12px;
-            margin-top: 30px;
-        }
+.pie {
+    color: #555;
+    font-size: 12px;
+    margin-top: 30px;
+}
 
-        /* Pantalla inicial */
+#inicio {
+    position: fixed;
+    inset: 0;
+    background: #080505;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-        #inicio {
-            position: fixed;
-            inset: 0;
-            background: #080505;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 20;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+#inicio h2 {
+    color: #aaa;
+}
 
-        #inicio h2 {
-            color: #aaa;
-        }
+#popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 30;
+    box-sizing: border-box;
+}
 
-        #inicio p {
-            color: #777;
-        }
+#popup.contenido {
+    display: flex;
+}
 
-        /* Popup */
+.ventana {
+    background: #100a0a;
+    border: 1px solid #963838;
+    padding: 35px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
 
-        #popup {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            z-index: 30;
-            box-sizing: border-box;
-        }
+.ventana h2 {
+    color: #ddd;
+}
 
-        #popup.contenido {
-            display: flex;
-        }
+.ventana p {
+    color: #aaa;
+}
 
-        .ventana {
-            background: #100a0a;
-            border: 1px solid #963838;
-            padding: 35px;
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .ventana h2 {
-            color: #ddd;
-        }
-
-        .ventana p {
-            color: #aaa;
-        }
-
-        @media (max-width: 500px) {
-            main {
-                padding: 22px;
-            }
-
-            h1 {
-                font-size: 23px;
-            }
-        }
-    </style>
+@media(max-width:500px) {
+    main {
+        padding: 22px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Pantalla inicial -->
+<div id="inicio">
+    <h2>¿ESTÁS SEGURO QUE QUIERES INTENTARLO?</h2>
+    <button id="comenzar">COMENZAR</button>
+</div>
 
-    <div id="inicio">
-        <h2>¿ESTÁS SEGURO QUE QUIERES INTENTARLO?</h2>
-        <button id="comenzar">COMENZAR</button>
+<main>
+    <p>Resuelve el siguiente acertijo:</p>
+
+    <div class="acertijo">
+        Viví en un lugar que ya no existe,
+        entre voces que hoy solo son ecos.
+        No tengo puertas, pero puedes entrar.
+        No tengo ventanas, pero puedes mirar.
+        A veces te hago sonreír y otras veces deseas no haber vuelto.
+        <br><br>
+        Cuanto más intentas aferrarte a mí,
+        más difícil se vuelve distinguir lo que fue real.
+        <br><br>
+        <strong>¿Qué soy?</strong>
     </div>
 
+    <form id="formulario">
+        <label for="respuesta">ESCRIBE TU RESPUESTA:</label>
+        <br><br>
 
-    <!-- Contenido principal -->
+        <input
+            type="text"
+            id="respuesta"
+            placeholder="..."
+            autocomplete="off"
+            required
+        >
 
-    <main>
-        <p>Resuelve el siguiente acertijo:</p>
+        <button type="submit">ENVIAR RESPUESTA</button>
+    </form>
 
-        <div class="acertijo">
-            No tengo voz, pero marco el paso de cada segundo.<br>
-            Tengo dos manos y una cara, aunque nunca puedo tocarte.<br>
-            Si llego a doce, no termina mi existencia: vuelvo a comenzar.
-            <br><br>
-            <strong>¿Qué soy?</strong>
-        </div>
+    <div id="resultado"></div>
 
-        <form id="formulario">
-            <label for="respuesta">ESCRIBE TU RESPUESTA:</label>
-            <br><br>
+    <div class="pie">NO CIERRES ESTA PÁGINA.</div>
+</main>
 
-            <input
-                type="text"
-                id="respuesta"
-                placeholder="..."
-                autocomplete="off"
-                required
-            >
-
-            <button type="submit">ENVIAR RESPUESTA</button>
-        </form>
-
-        <div id="resultado"></div>
-
-        <div class="pie">
-            NO CIERRES ESTA PÁGINA.
-        </div>
-    </main>
-
-
-    <!-- Popup de victoria -->
-
-    <div id="popup">
-        <div class="ventana">
-            <h2>TE HAS SALVADO.</h2>
-
-            <p>Puedes continuar con tu stream.</p>
-
-            <button id="continuar">CONTINUAR</button>
-        </div>
+<div id="popup">
+    <div class="ventana">
+        <h2>TE HAS SALVADO.</h2>
+        <p>Puedes continuar con tu stream.</p>
+        <button id="continuar">CONTINUAR</button>
     </div>
+</div>
 
+<script>
+const formulario = document.getElementById("formulario");
+const respuesta = document.getElementById("respuesta");
+const resultado = document.getElementById("resultado");
+const popup = document.getElementById("popup");
+const inicio = document.getElementById("inicio");
 
-    <script>
+let resuelto = false;
 
-        const formulario = document.getElementById("formulario");
-        const respuesta = document.getElementById("respuesta");
-        const resultado = document.getElementById("resultado");
-        const popup = document.getElementById("popup");
-        const inicio = document.getElementById("inicio");
+document.getElementById("comenzar").addEventListener("click", async function() {
+    try {
+        await document.documentElement.requestFullscreen();
+    } catch(e) {
+        console.log("No se pudo activar pantalla completa.");
+    }
 
-        let resuelto = false;
+    inicio.style.display = "none";
+});
 
+document.addEventListener("fullscreenchange", function() {
+    if (!document.fullscreenElement && !resuelto) {
+        inicio.style.display = "flex";
+    }
+});
 
-        // Activar pantalla completa
+formulario.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-        document.getElementById("comenzar").addEventListener("click", async function() {
+    let texto = respuesta.value.trim().toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 
-            try {
-                await document.documentElement.requestFullscreen();
-            } catch (e) {
-                console.log("No se pudo activar pantalla completa.");
-            }
+    if (["pasado", "el pasado", "un pasado"].includes(texto)) {
+        resultado.textContent = "RESPUESTA CORRECTA.";
 
-            inicio.style.display = "none";
+        respuesta.disabled = true;
+        formulario.querySelector("button").disabled = true;
 
-        });
+        resuelto = true;
+        popup.classList.add("contenido");
+    } else {
+        resultado.textContent = "RESPUESTA INCORRECTA. INTÉNTALO OTRA VEZ.";
+    }
+});
 
-
-        // Detectar cuando sale de pantalla completa
-
-        document.addEventListener("fullscreenchange", function() {
-
-            if (!document.fullscreenElement && !resuelto) {
-                inicio.style.display = "flex";
-            }
-
-        });
-
-
-        // Comprobar respuesta
-
-        formulario.addEventListener("submit", function(e) {
-
-            e.preventDefault();
-
-            let texto = respuesta.value
-                .trim()
-                .toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "");
-
-            if (["reloj", "un reloj", "el reloj"].includes(texto)) {
-
-                resultado.textContent = "RESPUESTA CORRECTA.";
-
-                respuesta.disabled = true;
-                formulario.querySelector("button").disabled = true;
-
-                resuelto = true;
-
-                popup.classList.add("contenido");
-
-            } else {
-
-                resultado.textContent = "RESPUESTA INCORRECTA. INTÉNTALO OTRA VEZ.";
-
-            }
-
-        });
-
-
-        // Cerrar popup
-
-        document.getElementById("continuar").addEventListener("click", function() {
-
-            popup.classList.remove("contenido");
-
-        });
-
-    </script>
+document.getElementById("continuar").addEventListener("click", function() {
+    popup.classList.remove("contenido");
+});
+</script>
 
 </body>
 </html>
