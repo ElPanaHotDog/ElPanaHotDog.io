@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NO DEBISTE ABRIRLO</title>
+    <title>Acertijo</title>
 
     <style>
         body {
@@ -82,7 +82,7 @@
             margin-top: 30px;
         }
 
-        /* Pantalla de inicio */
+        /* Pantalla inicial */
 
         #inicio {
             position: fixed;
@@ -158,8 +158,7 @@
     <!-- Pantalla inicial -->
 
     <div id="inicio">
-        <h2>ANTES DE CONTINUAR...</h2>
-        <p>Debes aceptar la transmisión.</p>
+        <h2>¿ESTÁS SEGURO QUE QUIERES INTENTARLO?</h2>
         <button id="comenzar">COMENZAR</button>
     </div>
 
@@ -167,8 +166,6 @@
     <!-- Contenido principal -->
 
     <main>
-        <h1>NO DEBISTE ABRIRLO.</h1>
-
         <p>Resuelve el siguiente acertijo:</p>
 
         <div class="acertijo">
@@ -271,10 +268,8 @@
                 respuesta.disabled = true;
                 formulario.querySelector("button").disabled = true;
 
-                // Desbloquear salida de pantalla completa
                 resuelto = true;
 
-                // Mostrar popup
                 popup.classList.add("contenido");
 
             } else {
